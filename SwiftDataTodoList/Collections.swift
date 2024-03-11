@@ -1,0 +1,1 @@
+let dbTodo = Scribe<TodoItem>()
