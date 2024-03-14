@@ -12,10 +12,12 @@
 		F700A9832B9D6015006B249F /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A9822B9D6015006B249F /* TodoItem.swift */; };
 		F700A9852B9D6016006B249F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F700A9842B9D6016006B249F /* Assets.xcassets */; };
 		F700A9892B9D6016006B249F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F700A9882B9D6016006B249F /* Preview Assets.xcassets */; };
-		F700A9912B9D6333006B249F /* Scribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A9902B9D6333006B249F /* Scribe.swift */; };
+		F700A9912B9D6333006B249F /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A9902B9D6333006B249F /* Database.swift */; };
 		F700A9972B9D8195006B249F /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A9962B9D8195006B249F /* Collections.swift */; };
 		F700A9992B9DA166006B249F /* TodoListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A9982B9DA166006B249F /* TodoListItem.swift */; };
 		F700A99B2B9DA31C006B249F /* CInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A99A2B9DA31C006B249F /* CInput.swift */; };
+		F7083EE52BA2A5430085B5E8 /* DebouncedOnChange in Frameworks */ = {isa = PBXBuildFile; productRef = F7083EE42BA2A5430085B5E8 /* DebouncedOnChange */; };
+		F7891B1D2BA275AF00A89785 /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7891B1C2BA275AE00A89785 /* helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +28,11 @@
 		F700A9842B9D6016006B249F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F700A9862B9D6016006B249F /* SwiftDataTodoList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftDataTodoList.entitlements; sourceTree = "<group>"; };
 		F700A9882B9D6016006B249F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F700A9902B9D6333006B249F /* Scribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scribe.swift; sourceTree = "<group>"; };
+		F700A9902B9D6333006B249F /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		F700A9962B9D8195006B249F /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		F700A9982B9DA166006B249F /* TodoListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListItem.swift; sourceTree = "<group>"; };
 		F700A99A2B9DA31C006B249F /* CInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CInput.swift; sourceTree = "<group>"; };
+		F7891B1C2BA275AE00A89785 /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7083EE52BA2A5430085B5E8 /* DebouncedOnChange in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,9 +73,10 @@
 				F700A9962B9D8195006B249F /* Collections.swift */,
 				F700A97E2B9D6015006B249F /* SwiftDataTodoListApp.swift */,
 				F700A9822B9D6015006B249F /* TodoItem.swift */,
+				F700A9902B9D6333006B249F /* Database.swift */,
+				F7891B1C2BA275AE00A89785 /* helpers.swift */,
 				F700A9842B9D6016006B249F /* Assets.xcassets */,
 				F700A9872B9D6016006B249F /* Preview Content */,
-				F700A98F2B9D6097006B249F /* Scribe */,
 			);
 			path = SwiftDataTodoList;
 			sourceTree = "<group>";
@@ -82,14 +87,6 @@
 				F700A9882B9D6016006B249F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		F700A98F2B9D6097006B249F /* Scribe */ = {
-			isa = PBXGroup;
-			children = (
-				F700A9902B9D6333006B249F /* Scribe.swift */,
-			);
-			path = Scribe;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,6 +105,9 @@
 			dependencies = (
 			);
 			name = SwiftDataTodoList;
+			packageProductDependencies = (
+				F7083EE42BA2A5430085B5E8 /* DebouncedOnChange */,
+			);
 			productName = SwiftDataTodoList;
 			productReference = F700A97B2B9D6015006B249F /* SwiftDataTodoList.app */;
 			productType = "com.apple.product-type.application";
@@ -136,6 +136,9 @@
 				Base,
 			);
 			mainGroup = F700A9722B9D6015006B249F;
+			packageReferences = (
+				F7083EE32BA2A5430085B5E8 /* XCRemoteSwiftPackageReference "DebouncedOnChange" */,
+			);
 			productRefGroup = F700A97C2B9D6015006B249F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -165,9 +168,10 @@
 				F700A9992B9DA166006B249F /* TodoListItem.swift in Sources */,
 				F700A99B2B9DA31C006B249F /* CInput.swift in Sources */,
 				F700A9812B9D6015006B249F /* TodoListView.swift in Sources */,
+				F7891B1D2BA275AF00A89785 /* helpers.swift in Sources */,
 				F700A9832B9D6015006B249F /* TodoItem.swift in Sources */,
 				F700A97F2B9D6015006B249F /* SwiftDataTodoListApp.swift in Sources */,
-				F700A9912B9D6333006B249F /* Scribe.swift in Sources */,
+				F700A9912B9D6333006B249F /* Database.swift in Sources */,
 				F700A9972B9D8195006B249F /* Collections.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +391,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F7083EE32BA2A5430085B5E8 /* XCRemoteSwiftPackageReference "DebouncedOnChange" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mesqueeb/DebouncedOnChange.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F7083EE42BA2A5430085B5E8 /* DebouncedOnChange */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7083EE32BA2A5430085B5E8 /* XCRemoteSwiftPackageReference "DebouncedOnChange" */;
+			productName = DebouncedOnChange;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F700A9732B9D6015006B249F /* Project object */;
 }

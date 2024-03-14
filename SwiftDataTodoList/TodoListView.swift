@@ -10,14 +10,13 @@ let sortOptions: [Option<[SortDescriptor<TodoItem>]>] = [
 ]
 
 struct TodoListView: View {
-//  @Environment(\.modelContext) private var modelContext
-
-//  @Query(sort: \TodoItem.dateCreated, order: .forward) private var items: [TodoItem] = []
+  // @Environment(\.modelContext) private var modelContext
+  // @Query(sort: \TodoItem.dateCreated, order: .forward) private var items: [TodoItem] = []
   @State private var activeSort: [SortDescriptor<TodoItem>] = sortOptions[0].value
   @State private var searchText: String = ""
   @State private var showChecked: Bool = true
 
-  var items: [TodoItem] { dbTodo.fetchData }
+  var items: [TodoItem] { dbTodo.fetchedData }
 
   var predicate: Predicate<TodoItem>? { TodoItem.query(searchText: searchText, showChecked: showChecked) }
   var sortBy: [SortDescriptor<TodoItem>] { activeSort }
@@ -76,9 +75,8 @@ struct TodoListView: View {
           .pickerStyle(.inline)
       }
       HStack {
-        TextField("New Item", text: $newItemSummary)
+        CInput(modelValue: $newItemSummary, placeholder: "New Item", onSubmit: addItem)
           .textFieldStyle(RoundedBorderTextFieldStyle())
-          .onSubmit { addItem() }
 
         Button(action: addItem) {
           Image(systemName: "plus")

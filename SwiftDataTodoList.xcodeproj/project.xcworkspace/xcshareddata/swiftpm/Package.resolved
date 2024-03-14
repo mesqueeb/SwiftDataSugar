@@ -1,0 +1,15 @@
+{
+  "originHash" : "fc9cb002a966319ebc92425e566600738c25a531f556252ca3fcf875b4c7b082",
+  "pins" : [
+    {
+      "identity" : "debouncedonchange",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mesqueeb/DebouncedOnChange.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "aeafb9c5dbe7a85c4e24d631e36bc0b55f3d7715"
+      }
+    }
+  ],
+  "version" : 3
+}

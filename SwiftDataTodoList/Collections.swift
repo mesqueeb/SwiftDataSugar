@@ -1,1 +1,1 @@
-let dbTodo = Scribe<TodoItem>()
+let dbTodo = DbService<TodoItem>()

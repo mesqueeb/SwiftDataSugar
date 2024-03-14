@@ -7,6 +7,6 @@ struct SwiftDataTodoListApp: App {
     WindowGroup {
       TodoListView()
     }
-    .modelContainer(ScribeLedger.sharedModelContainer)
+    .modelContainer(PersistentDb.sharedModelContainer)
   }
 }

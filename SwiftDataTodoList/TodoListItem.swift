@@ -11,8 +11,7 @@ struct TodoListItem: View {
     Binding<String>(
       get: { item.summary },
       set: { newValue in
-        item.summary = newValue
-        item.dateUpdated = Date()
+        dbTodo.update(id: item.id, \.summary, newValue)
       }
     )
   }
@@ -20,23 +19,21 @@ struct TodoListItem: View {
   private func toggleChecked(_ item: TodoItem) {
     withAnimation {
       let newValue = !item.isChecked
-      item.isChecked = newValue
-      item.dateChecked = newValue ? Date() : nil
-      item.dateUpdated = Date()
+      dbTodo.update(id: item.id, \.isChecked, newValue)
+      dbTodo.update(id: item.id, \.dateChecked, newValue ? Date() : nil)
+      dbTodo.update(id: item.id, \.dateUpdated, Date())
     }
   }
 
   private func deleteItem(_ item: TodoItem) {
-    _ = withAnimation {
-      Task.detached {
-        do {
-          try await dbTodo.delete(id: item.id)
-          refresh()
-        } catch {
-          print("error →", error)
-        }
-      }
+    withAnimation {
+      dbTodo.delete(id: item.id)
     }
+  }
+
+  private func finishEditing() {
+    dbTodo.update(id: item.id, \.dateUpdated, Date())
+    isEditing = false
   }
 
   var body: some View {
@@ -46,8 +43,8 @@ struct TodoListItem: View {
       }
 
       if isEditing {
-        CInput(modelValue: editingSummary, placeholder: "...", autoFocus: true, onBlur: { isEditing = false })
-          .onSubmit { isEditing = false }
+        CInput(modelValue: editingSummary, placeholder: "...", revertOnExit: true, autoFocus: true, onBlur: finishEditing)
+          .onSubmit(finishEditing)
           .padding(CGFloat(4))
           .frame(maxWidth: .infinity, alignment: .leading) // Make text take up as much space as possible
       } else {
