@@ -35,7 +35,6 @@ public struct CInput: View {
     onSubmit: (() -> Void)? = nil
   ) {
     self._modelValue = modelValue
-    self._futureValue = State(initialValue: modelValue.wrappedValue)
     self._innerValue = State(initialValue: modelValue.wrappedValue)
     self.initialValue = modelValue.wrappedValue
     self.placeholder = placeholder
@@ -48,7 +47,6 @@ public struct CInput: View {
 
   @State private var debounceInput: Task<Void, Never>?
   private var initialValue: String
-  @State private var futureValue: String
   @State private var innerValue: String
   /// FocusState to track the focus state of the TextField
   @FocusState private var hasFocus: Bool
@@ -60,9 +58,6 @@ public struct CInput: View {
         innerValue = newValue
       }
       /// Watch innerValue updates with debounce
-      .onChange(of: innerValue) { _, newValue in
-        futureValue = newValue
-      }
       .onChange(of: innerValue, debounceTime: .milliseconds(250)) { _, newValue, task in
         modelValue = newValue
         debounceInput = task
@@ -72,9 +67,8 @@ public struct CInput: View {
       .onChange(of: hasFocus) { _, focussed in if !focussed { onBlur?() } }
       .onAppear { if autoFocus { self.hasFocus = true } }
       .onSubmit {
-        print("futureValue →", futureValue)
         debounceInput?.cancel()
-        modelValue = futureValue
+        modelValue = innerValue
         onSubmit?()
       }
       /// Handle revertOnExit
