@@ -45,3 +45,5 @@ import SwiftData
     return nil
   }
 }
+
+let dbTodo = DbService<TodoItem>()

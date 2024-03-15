@@ -40,6 +40,7 @@ struct TodoListView: View {
         }
         .onDelete(perform: { indexes in print("indexes →", indexes) })
       }
+      .refreshable { dbTodo.reQuery() }
       .searchable(text: $searchText)
       .toolbar {
         Menu {
@@ -54,26 +55,13 @@ struct TodoListView: View {
           .pickerStyle(.inline)
       }
       .toolbar {
-        Menu {
-          Button("Insert via Actor", action: { dbTodo.insert(TodoItem(summary: "Inserted via Actor")) })
-          Button("Delete via Actor", action: { dbTodo.delete(id: items.last!.id) })
-          Button("Fetch and Edit via Actor", action: {
-            Task.detached {
-              let item = items.last!
-              printMemoryAddress("item.modelContext", item.modelContext)
-              printGCDThread()
-              item.summary += "!"
-              if let fetchedItem = await dbTodo.fetch(id: item.id) {
-                printMemoryAddress("fetchedItem.modelContext", fetchedItem.modelContext)
-                printGCDThread()
-                fetchedItem.summary += "?"
-                dbTodo.reQuery()
-              }
-            }
-          })
-        } label: { Label("Options", systemImage: "ellipsis.curlybraces") }
-          .pickerStyle(.inline)
+        CrashTests(items: items)
       }
+      #if os(macOS)
+      Button(action: dbTodo.reQuery) {
+        Text("Refetch")
+      }
+      #endif
       HStack {
         CInput(modelValue: $newItemSummary, placeholder: "New Item", onSubmit: addItem)
           .textFieldStyle(RoundedBorderTextFieldStyle())

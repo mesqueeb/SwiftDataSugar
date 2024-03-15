@@ -2,7 +2,7 @@ import SwiftData
 import SwiftUI
 
 @main
-struct SwiftDataTodoListApp: App {
+struct MainApp: App {
   var body: some Scene {
     WindowGroup {
       TodoListView()

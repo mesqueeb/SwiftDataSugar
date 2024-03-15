@@ -93,7 +93,7 @@ public enum FetchStatus {
 
   private var lastUsedQuery: (predicate: Predicate<T>?, sortBy: [SortDescriptor<T>]) = (predicate: nil, sortBy: [])
 
-  private var dbHandler: DbHandler<T> {
+  public var dbHandler: DbHandler<T> {
     DbHandler<T>(modelContainer: PersistentDb.sharedModelContainer)
   }
 
