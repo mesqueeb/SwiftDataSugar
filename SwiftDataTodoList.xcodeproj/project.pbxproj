@@ -16,6 +16,7 @@
 		F700A9992B9DA166006B249F /* TodoListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A9982B9DA166006B249F /* TodoListItem.swift */; };
 		F700A99B2B9DA31C006B249F /* CInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A99A2B9DA31C006B249F /* CInput.swift */; };
 		F7083EE52BA2A5430085B5E8 /* DebouncedOnChange in Frameworks */ = {isa = PBXBuildFile; productRef = F7083EE42BA2A5430085B5E8 /* DebouncedOnChange */; };
+		F749D4702BA41A0800AA6B51 /* SwiftDataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749D46F2BA41A0800AA6B51 /* SwiftDataQuery.swift */; };
 		F7891B1D2BA275AF00A89785 /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7891B1C2BA275AE00A89785 /* helpers.swift */; };
 		F7C9F7262BA3BAC400A97B61 /* CrashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C9F7252BA3BAC400A97B61 /* CrashTests.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 		F700A9902B9D6333006B249F /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		F700A9982B9DA166006B249F /* TodoListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListItem.swift; sourceTree = "<group>"; };
 		F700A99A2B9DA31C006B249F /* CInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CInput.swift; sourceTree = "<group>"; };
+		F749D46F2BA41A0800AA6B51 /* SwiftDataQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataQuery.swift; sourceTree = "<group>"; };
 		F7891B1C2BA275AE00A89785 /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
 		F7C9F7252BA3BAC400A97B61 /* CrashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 				F700A9822B9D6015006B249F /* TodoItem.swift */,
 				F700A9982B9DA166006B249F /* TodoListItem.swift */,
 				F700A9802B9D6015006B249F /* TodoListView.swift */,
+				F749D46F2BA41A0800AA6B51 /* SwiftDataQuery.swift */,
 				F700A9842B9D6016006B249F /* Assets.xcassets */,
 				F700A9872B9D6016006B249F /* Preview Content */,
 			);
@@ -173,6 +176,7 @@
 				F700A9832B9D6015006B249F /* TodoItem.swift in Sources */,
 				F700A97F2B9D6015006B249F /* MainApp.swift in Sources */,
 				F700A9912B9D6333006B249F /* Database.swift in Sources */,
+				F749D4702BA41A0800AA6B51 /* SwiftDataQuery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

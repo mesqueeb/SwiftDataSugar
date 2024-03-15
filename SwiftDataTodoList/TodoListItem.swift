@@ -3,7 +3,6 @@ import SwiftUI
 
 struct TodoListItem: View {
   let item: TodoItem
-  let refresh: () -> Void
 
   @State private var isEditing: Bool = false
 
@@ -68,6 +67,6 @@ struct TodoListItem: View {
 }
 
 #Preview {
-  TodoListItem(item: TodoItem(summary: "Hello it's me"), refresh: { print("refreshed") })
+  TodoListItem(item: TodoItem(summary: "Hello it's me"))
     .modelContainer(for: TodoItem.self, inMemory: true)
 }

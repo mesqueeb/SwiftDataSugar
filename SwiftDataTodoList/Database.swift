@@ -60,16 +60,6 @@ public enum FetchStatus {
     try modelContext.save()
   }
 
-  /// ```swift
-  /// let predicate = #Predicate<TodoItem> { data in data.summary.contains(keyword) }
-  /// let results = await Scribe.search(predicate)
-  /// ```
-  public func query(predicate: Predicate<T>? = nil, sortBy: [SortDescriptor<T>] = []) throws -> [T] {
-    let descriptor = FetchDescriptor(predicate: predicate, sortBy: sortBy)
-
-    return try modelContext.fetch(descriptor)
-  }
-
   public func fetch(id: PersistentIdentifier) -> T? {
     let data = self[id, as: T.self]
 
@@ -79,20 +69,9 @@ public enum FetchStatus {
 
     return data
   }
-
-  public func fetchAll() throws -> [T] {
-    return try query()
-  }
 }
 
 @Observable public final class DbService<T: PersistentModel> {
-  /// Use this in your swiftUI views
-  public var fetchedData: [T] = []
-  /// Use this in your swiftUI views
-  public var fetchStatus: FetchStatus = .unfetched
-
-  private var lastUsedQuery: (predicate: Predicate<T>?, sortBy: [SortDescriptor<T>]) = (predicate: nil, sortBy: [])
-
   public var dbHandler: DbHandler<T> {
     DbHandler<T>(modelContainer: PersistentDb.sharedModelContainer)
   }
@@ -100,49 +79,18 @@ public enum FetchStatus {
   public func insert(_ data: T) {
     Task.detached {
       try await self.dbHandler.insert(data)
-      self.reQuery()
     }
   }
 
   public func delete(id: PersistentIdentifier) {
     Task.detached {
       try await self.dbHandler.delete(id: id)
-      self.reQuery()
     }
   }
 
   public func update<Value>(id: PersistentIdentifier, _ keyPath: WritableKeyPath<T, Value>, _ newValue: Value) {
     Task.detached {
       try await self.dbHandler.update(id: id, keyPath, newValue)
-    }
-  }
-
-  public func query(predicate: Predicate<T>? = nil, sortBy: [SortDescriptor<T>] = []) {
-    Task.detached {
-      self.fetchStatus = .fetching
-      let result = try await self.dbHandler.query(predicate: predicate, sortBy: sortBy)
-      self.lastUsedQuery = (predicate: predicate, sortBy: sortBy)
-      self.fetchedData = result
-      self.fetchStatus = .fetched
-    }
-  }
-
-  /// Executes `query` again with the last used predicate and sortBy
-  public func reQuery() {
-    query(predicate: lastUsedQuery.predicate, sortBy: lastUsedQuery.sortBy)
-  }
-
-  public func fetch(id: PersistentIdentifier) async -> T? {
-    return await dbHandler.fetch(id: id)
-  }
-
-  public func fetchAll() {
-    lastUsedQuery = (predicate: nil, sortBy: [])
-    Task.detached {
-      self.fetchStatus = .fetching
-      let result = try await self.dbHandler.fetchAll()
-      self.fetchedData = result
-      self.fetchStatus = .fetched
     }
   }
 }

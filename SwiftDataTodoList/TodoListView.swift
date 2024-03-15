@@ -10,16 +10,11 @@ let sortOptions: [Option<[SortDescriptor<TodoItem>]>] = [
 ]
 
 struct TodoListView: View {
-  // @Environment(\.modelContext) private var modelContext
-  // @Query(sort: \TodoItem.dateCreated, order: .forward) private var items: [TodoItem] = []
   @State private var activeSort: [SortDescriptor<TodoItem>] = sortOptions[0].value
   @State private var searchText: String = ""
   @State private var showChecked: Bool = true
 
-  var items: [TodoItem] { dbTodo.fetchedData }
-
-  var predicate: Predicate<TodoItem>? { TodoItem.query(searchText: searchText, showChecked: showChecked) }
-  var sortBy: [SortDescriptor<TodoItem>] { activeSort }
+  var activePredicate: Predicate<TodoItem>? { TodoItem.query(searchText: searchText, showChecked: showChecked) }
 
   @State private var newItemSummary: String = ""
 
@@ -34,13 +29,10 @@ struct TodoListView: View {
   var body: some View {
     VStack {
       List {
-        ForEach(items) { item in
-          TodoListItem(item: item, refresh: {})
-            .id(item.id) // Use ID for List reordering and animations
+        SwiftDataQuery(predicate: activePredicate, sortBy: activeSort) { item in
+          TodoListItem(item: item)
         }
-        .onDelete(perform: { indexes in print("indexes →", indexes) })
       }
-      .refreshable { dbTodo.reQuery() }
       .searchable(text: $searchText)
       .toolbar {
         Menu {
@@ -54,14 +46,7 @@ struct TodoListView: View {
         } label: { Label("Sort", systemImage: "arrow.up.arrow.down") }
           .pickerStyle(.inline)
       }
-      .toolbar {
-        CrashTests(items: items)
-      }
-      #if os(macOS)
-      Button(action: dbTodo.reQuery) {
-        Text("Refetch")
-      }
-      #endif
+      .toolbar { CrashTests() }
       HStack {
         CInput(modelValue: $newItemSummary, placeholder: "New Item", onSubmit: addItem)
           .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -72,10 +57,6 @@ struct TodoListView: View {
       }
       .padding()
     }
-    .onAppear { dbTodo.fetchAll() }
-    .onChange(of: activeSort) { _, _ in dbTodo.query(predicate: predicate, sortBy: sortBy) }
-    .onChange(of: searchText) { _, _ in dbTodo.query(predicate: predicate, sortBy: sortBy) }
-    .onChange(of: showChecked) { _, _ in dbTodo.query(predicate: predicate, sortBy: sortBy) }
   }
 }
 
