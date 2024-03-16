@@ -69,14 +69,11 @@
 			isa = PBXGroup;
 			children = (
 				F700A9862B9D6016006B249F /* SwiftDataTodoList.entitlements */,
-				F700A99A2B9DA31C006B249F /* CInput.swift */,
+				F7B463C42BA55676009E0DAE /* TodoList */,
 				F7C9F7252BA3BAC400A97B61 /* CrashTests.swift */,
 				F700A9902B9D6333006B249F /* Database.swift */,
 				F7891B1C2BA275AE00A89785 /* helpers.swift */,
 				F700A97E2B9D6015006B249F /* MainApp.swift */,
-				F700A9822B9D6015006B249F /* TodoItem.swift */,
-				F700A9982B9DA166006B249F /* TodoListItem.swift */,
-				F700A9802B9D6015006B249F /* TodoListView.swift */,
 				F749D46F2BA41A0800AA6B51 /* SwiftDataQuery.swift */,
 				F700A9842B9D6016006B249F /* Assets.xcassets */,
 				F700A9872B9D6016006B249F /* Preview Content */,
@@ -90,6 +87,17 @@
 				F700A9882B9D6016006B249F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F7B463C42BA55676009E0DAE /* TodoList */ = {
+			isa = PBXGroup;
+			children = (
+				F700A99A2B9DA31C006B249F /* CInput.swift */,
+				F700A9822B9D6015006B249F /* TodoItem.swift */,
+				F700A9982B9DA166006B249F /* TodoListItem.swift */,
+				F700A9802B9D6015006B249F /* TodoListView.swift */,
+			);
+			path = TodoList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

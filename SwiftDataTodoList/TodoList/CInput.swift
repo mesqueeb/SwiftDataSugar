@@ -48,7 +48,6 @@ public struct CInput: View {
   @State private var debounceInput: Task<Void, Never>?
   private var initialValue: String
   @State private var innerValue: String
-  /// FocusState to track the focus state of the TextField
   @FocusState private var hasFocus: Bool
 
   public var body: some View {

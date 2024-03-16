@@ -1,10 +1,10 @@
 import Foundation
 import SwiftData
 
-@Model public final class TodoItem: Identifiable, Equatable {
-  @Attribute(.unique) public let id: String
+@Model public final class TodoItem: Identifiable, Equatable, Timestamped {
+  public let id: String
   public let dateCreated: Date
-  public var dateUpdated: Date?
+  public var dateUpdated: Date
   public var dateChecked: Date?
   public var summary: String
   public var isChecked: Bool
@@ -12,7 +12,7 @@ import SwiftData
   public init(summary: String) {
     self.id = UUID().uuidString
     self.dateCreated = Date()
-    self.dateUpdated = nil
+    self.dateUpdated = Date()
     self.dateChecked = nil
     self.summary = summary
     self.isChecked = false
@@ -45,5 +45,3 @@ import SwiftData
     return nil
   }
 }
-
-let dbTodo = DbService<TodoItem>()
