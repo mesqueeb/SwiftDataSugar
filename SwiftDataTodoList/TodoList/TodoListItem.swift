@@ -19,8 +19,10 @@ struct TodoListItem: View {
     withAnimation {
       let newValue = !item.isChecked
       Task {
-        try await dbTodo.update(id: item.id, \.isChecked, newValue)
-        try await dbTodo.update(id: item.id, \.dateChecked, newValue ? Date() : nil)
+        try await dbTodo.update(id: item.id) { data in
+          data.isChecked = newValue
+          data.dateChecked = newValue ? Date() : nil
+        }
       }
     }
   }

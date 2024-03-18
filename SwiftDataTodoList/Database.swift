@@ -41,6 +41,13 @@ public actor DbHandler<T>: ModelActor where T: PersistentModel, T: Timestamped {
     try modelContext.save()
   }
 
+  public func update(id: PersistentIdentifier, _ updateFn: @escaping @Sendable (T) -> Void) throws {
+    guard var data = fetch(id: id) else { return }
+    updateFn(data)
+    data.dateUpdated = .now
+    try modelContext.save()
+  }
+
   public func fetch(id: PersistentIdentifier) -> T? {
     let data = self[id, as: T.self]
     return data
