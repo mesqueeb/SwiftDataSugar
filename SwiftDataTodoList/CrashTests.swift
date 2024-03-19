@@ -56,11 +56,24 @@ struct CrashTests: View {
     }
   }
 
+  func inspectPID() {
+    let item = TodoItem(summary: "Inspect PID")
+    let uid: String = item.uid.uuidString
+    let pid: PersistentIdentifier = item.id
+    print("uid →", uid)
+    print("pid →", pid)
+    modelContext.insert(item)
+    try! modelContext.save()
+    let pidAfterSave: PersistentIdentifier = item.id
+    print("pidAfterSave →", pidAfterSave)
+  }
+
   var body: some View {
     Menu {
       Button("Insert Tests", action: insertTests)
       Button("Delete Tests", action: deleteTests)
       Button("Edit Tests", action: editTests)
+      Button("Inspect PID", action: inspectPID)
     } label: { Label("Options", systemImage: "ellipsis.curlybraces") }
       .pickerStyle(.inline)
   }

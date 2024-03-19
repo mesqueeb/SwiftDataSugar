@@ -18,8 +18,6 @@ struct TodoListView: View {
 
   @State private var newItemSummary: String = ""
 
-  // let dbTodo = DbHandler<TodoItem>(modelContainer: PersistentDb.sharedModelContainer)
-
   private func addItem() {
     withAnimation {
       let data = TodoItem(summary: newItemSummary)
@@ -35,7 +33,6 @@ struct TodoListView: View {
       List {
         SwiftDataQuery(predicate: activePredicate, sortBy: activeSort) { item in
           TodoListItem(item: item)
-          // TodoListItem(item: item, dateUpdated: item.dateUpdated)
         }
       }
       .searchable(text: $searchText)

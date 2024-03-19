@@ -20,8 +20,19 @@ let dbTodo = DbHandler<TodoItem>(modelContainer: sharedModelContainer)
 @main
 struct MainApp: App {
   var body: some Scene {
-    WindowGroup {
+    WindowGroup(id: "main") {
       TodoListView()
+    }
+    .modelContainer(sharedModelContainer)
+
+    WindowGroup(id: "item", for: UUID.self) { $uid in
+      if let uid {
+        SwiftDataQuery(predicate: #Predicate<TodoItem> { $0.uid == uid }) { item in
+          TodoItemView(item: item)
+        }
+      } else {
+        Text("ID not provided")
+      }
     }
     .modelContainer(sharedModelContainer)
   }

@@ -4,6 +4,7 @@ import SwiftUI
 struct TodoListItem: View {
   let item: TodoItem
 
+  @Environment(\.openWindow) private var openWindow
   @State private var isEditing: Bool = false
 
   private var editingSummary: Binding<String> {
@@ -52,14 +53,19 @@ struct TodoListItem: View {
           .padding(CGFloat(4))
           .frame(maxWidth: .infinity, alignment: .leading) // Make text take up as much space as possible
       } else {
-        Button(action: { isEditing = true }) {
-          Text(item.summary)
-            .strikethrough(item.isChecked, color: .gray)
-            .padding(CGFloat(4))
-            .frame(maxWidth: .infinity, alignment: .leading) // Make text take up as much space as possible
-            .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
+        Text(item.summary)
+          .strikethrough(item.isChecked, color: .gray)
+          .padding(CGFloat(4))
+          .frame(maxWidth: .infinity, alignment: .leading) // Make text take up as much space as possible
+          .contentShape(Rectangle())
+          .gesture(
+            TapGesture(count: 2).onEnded {
+              openWindow(id: "item", value: item.uid)
+            }.exclusively(before: TapGesture(count: 1).onEnded {
+              isEditing = true
+            })
+          )
+
         Button(action: { isEditing = true }) {
           Image(systemName: "pencil")
         }
