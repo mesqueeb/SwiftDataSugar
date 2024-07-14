@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-public struct TodoItemView: View {
+public struct TodoItemDetailsView: View {
   let item: TodoItem
 
   public init(item: TodoItem) {
@@ -14,5 +14,5 @@ public struct TodoItemView: View {
 }
 
 #Preview {
-  TodoItemView(item: TodoItem(summary: "Hello"))
+  TodoListItemView(item: TodoItem(summary: "Hello"))
 }

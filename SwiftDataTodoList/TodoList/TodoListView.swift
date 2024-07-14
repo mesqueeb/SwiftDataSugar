@@ -1,12 +1,14 @@
 import SwiftData
 import SwiftUI
 
-typealias Option<T: Hashable> = (label: String, value: T)
-
 let sortOptions: [Option<[SortDescriptor<TodoItem>]>] = [
   (label: "Date Added", value: [SortDescriptor<TodoItem>(\.dateCreated, order: .forward)]),
   (label: "A-Z", value: [SortDescriptor<TodoItem>(\.summary, order: .forward)]),
-  (label: "Z-A", value: [SortDescriptor<TodoItem>(\.summary, order: .reverse)])
+  (label: "Z-A", value: [SortDescriptor<TodoItem>(\.summary, order: .reverse)]),
+]
+let filterOptions: [Option<Bool>] = [
+  (label: "Show All", value: true),
+  (label: "Hide Checked Items", value: false),
 ]
 
 struct TodoListView: View {
@@ -19,6 +21,7 @@ struct TodoListView: View {
   @State private var newItemSummary: String = ""
 
   private func addItem() {
+    if newItemSummary.isEmpty { return }
     withAnimation {
       let data = TodoItem(summary: newItemSummary)
       Task {
@@ -29,36 +32,42 @@ struct TodoListView: View {
   }
 
   var body: some View {
-    VStack {
-      List {
-        SwiftDataQuery(predicate: activePredicate, sortBy: activeSort) { item in
-          TodoListItem(item: item)
+    NavigationStack {
+      VStack {
+        ScrollView {
+          LazyVStack {
+            Spacer(minLength: 8)
+            SwiftDataQuery(predicate: activePredicate, sortBy: activeSort) { item in
+              TodoListItemView(item: item)
+            }
+            Spacer(minLength: 8)
+          }
         }
-      }
-      .searchable(text: $searchText)
-      .toolbar {
-        Menu {
-          Picker("Sort Order", selection: $activeSort) {
-            ForEach(sortOptions, id: \.label) { option in Text(option.label).tag(option.value) }
-          }
-          Picker("Filter", selection: $showChecked) {
-            Text("Show All").tag(true)
-            Text("Hide Checked Items").tag(false)
-          }
-        } label: { Label("Sort", systemImage: "arrow.up.arrow.down") }
-          .pickerStyle(.inline)
-      }
-      .toolbar { CrashTests() }
-      HStack {
-        CInput(modelValue: $newItemSummary, placeholder: "New Item", onSubmit: addItem)
-          .textFieldStyle(RoundedBorderTextFieldStyle())
+        HStack {
+          CInput(modelValue: $newItemSummary, placeholder: "New Item", onSubmit: addItem)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
 
-        Button(action: addItem) {
-          Image(systemName: "plus")
+          CButton(action: addItem) {
+            Image(systemName: "plus")
+          }
+        }
+        .padding()
+      }
+      .toolbar {
+        ToolbarItem {
+          MenuFilterAndSort(
+            sortOptions: sortOptions,
+            filterOptions: filterOptions,
+            activeSort: $activeSort,
+            activeFilter: $showChecked
+          )
+        }
+        ToolbarItem {
+          MenuCrashTests()
         }
       }
-      .padding()
     }
+    .searchable(text: $searchText)
   }
 }
 

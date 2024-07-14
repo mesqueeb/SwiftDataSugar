@@ -1,8 +1,9 @@
 import SwiftData
 import SwiftUI
 
-struct CrashTests: View {
+struct MenuCrashTests: View {
   @Environment(\.modelContext) private var modelContext
+  @Query private var queryItems: [TodoItem]
 
   func insertTests() {
     Task { @MainActor in try await dbTodo.insert(TodoItem(summary: "Inserted via Actor on @MainActor 1")) }
@@ -17,7 +18,7 @@ struct CrashTests: View {
   }
 
   func deleteTests() {
-    let items: [TodoItem] = Array(repeating: 0, count: 4).enumerated().map { i, _ in
+    let items: [TodoItem] = Array(repeating: 0, count: 8).enumerated().map { i, _ in
       TodoItem(summary: "Inserted to be deleted #\(i)")
     }
 
@@ -33,6 +34,15 @@ struct CrashTests: View {
       Task { @MainActor in try await dbTodo.delete(id: items[1].id) }
       Task.detached { try await dbTodo.delete(id: items[2].id) }
       Task.detached { try await dbTodo.delete(id: items[3].id) }
+
+      await wait(ms: 50)
+
+      let queryItemsToDelete: [PersistentIdentifier] = [queryItems[0].id, queryItems[1].id, queryItems[2].id, queryItems[3].id]
+      Task { @MainActor in try await dbTodo.delete(id: queryItemsToDelete[0]) }
+      Task { @MainActor in try await dbTodo.delete(id: queryItemsToDelete[1]) }
+      Task.detached { try await dbTodo.delete(id: queryItemsToDelete[2]) }
+      Task.detached { try await dbTodo.delete(id: queryItemsToDelete[3]) }
+
       // The following would crash the app:
       // Deleting an item by instance reference in a context it was not created in.
       // Task { @MainActor in modelContext.delete(items[4]) }
@@ -50,6 +60,13 @@ struct CrashTests: View {
       Task { @MainActor in try await dbTodo.update(id: item.id, \.summary, "Edit B") }
       Task.detached { try await dbTodo.update(id: item.id, \.summary, "Edit C") }
       Task.detached { try await dbTodo.update(id: item.id, \.summary, "Edit D") }
+
+      await wait(ms: 50)
+
+      Task { @MainActor in try await dbTodo.update(id: queryItems[0].id, \.summary, "Edit A") }
+      Task { @MainActor in try await dbTodo.update(id: queryItems[0].id, \.summary, "Edit B") }
+      Task.detached { try await dbTodo.update(id: queryItems[0].id, \.summary, "Edit C") }
+      Task.detached { try await dbTodo.update(id: queryItems[0].id, \.summary, "Edit D") }
 
       // One of the edits above should by now have been applied the `@Query` _should_ pick up this update automatically
       // Question: Why does the list of items not get refreshed. (re-running the app _will_ show the edit reflected)
@@ -74,11 +91,14 @@ struct CrashTests: View {
       Button("Delete Tests", action: deleteTests)
       Button("Edit Tests", action: editTests)
       Button("Inspect PID", action: inspectPID)
-    } label: { Label("Options", systemImage: "ellipsis.curlybraces") }
+    } label: { Label("Run Tests", systemImage: "ellipsis.curlybraces") }
       .pickerStyle(.inline)
+    #if os(visionOS)
+      .glassBackgroundEffect()
+    #endif
   }
 }
 
 #Preview {
-  CrashTests()
+  MenuCrashTests()
 }

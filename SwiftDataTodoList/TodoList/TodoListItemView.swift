@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-struct TodoListItem: View {
+struct TodoListItemView: View {
   let item: TodoItem
 
   @Environment(\.openWindow) private var openWindow
@@ -28,7 +28,10 @@ struct TodoListItem: View {
     }
   }
 
+  /// Prevent a crash when the same delete button is clicked rapidly
+  @State private var isDeleting = false
   private func deleteItem(_ item: TodoItem) {
+    isDeleting = true
     withAnimation {
       Task { try await dbTodo.delete(id: item.id) }
     }
@@ -43,15 +46,16 @@ struct TodoListItem: View {
 
   var body: some View {
     HStack {
-      Button(action: { toggleChecked(item) }) {
+      CButton(action: { toggleChecked(item) }) {
         Image(systemName: item.isChecked ? "checkmark.square" : "square")
-      }
+      }.disabled(isDeleting)
 
       if isEditing {
         CInput(modelValue: editingSummary, placeholder: "...", revertOnExit: true, autoFocus: true, onBlur: finishEditing)
           .onSubmit(finishEditing)
           .padding(CGFloat(4))
           .frame(maxWidth: .infinity, alignment: .leading) // Make text take up as much space as possible
+          .disabled(isDeleting)
       } else {
         Text(item.summary)
           .strikethrough(item.isChecked, color: .gray)
@@ -66,18 +70,19 @@ struct TodoListItem: View {
             })
           )
 
-        Button(action: { isEditing = true }) {
+        CButton(action: { isEditing = true }) {
           Image(systemName: "pencil")
-        }
+        }.disabled(isDeleting)
       }
-      Button(action: { deleteItem(item) }) {
+      CButton(action: { deleteItem(item) }) {
         Image(systemName: "trash")
-      }
+      }.disabled(isDeleting)
     }
+    .padding(.horizontal, 16)
   }
 }
 
 #Preview {
-  TodoListItem(item: TodoItem(summary: "Hello it's me"))
+  TodoListItemView(item: TodoItem(summary: "Hello it's me"))
     .modelContainer(for: TodoItem.self, inMemory: true)
 }

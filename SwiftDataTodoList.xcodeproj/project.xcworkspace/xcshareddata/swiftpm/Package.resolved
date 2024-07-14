@@ -1,13 +1,13 @@
 {
-  "originHash" : "b4f656e1d626242b86363256f978ad4c2150ca5fa822b1e94ac2b497484c6ef3",
+  "originHash" : "13b2ed044251086941420c97b0a393416c4e1ccec8b8f840c452f25aff8e9b50",
   "pins" : [
     {
-      "identity" : "debouncedonchange",
+      "identity" : "debouncify",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/mesqueeb/DebouncedOnChange.git",
+      "location" : "https://github.com/mesqueeb/Debouncify.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "aeafb9c5dbe7a85c4e24d631e36bc0b55f3d7715"
+        "revision" : "c5514036de80637ad3bde9edebe8033cd2208a28",
+        "version" : "0.1.0"
       }
     }
   ],

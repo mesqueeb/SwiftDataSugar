@@ -28,7 +28,7 @@ struct MainApp: App {
     WindowGroup(id: "item", for: UUID.self) { $uid in
       if let uid {
         SwiftDataQuery(predicate: #Predicate<TodoItem> { $0.uid == uid }) { item in
-          TodoItemView(item: item)
+          TodoItemDetailsView(item: item)
         }
       } else {
         Text("ID not provided")
