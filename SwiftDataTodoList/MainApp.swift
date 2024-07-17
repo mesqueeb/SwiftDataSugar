@@ -15,7 +15,7 @@ let sharedModelContainer: ModelContainer = {
 }()
 
 @MainActor
-let dbTodo = DbHandler<TodoItem>(modelContainer: sharedModelContainer)
+let dbTodos = DbCollection<TodoItem>(modelContainer: sharedModelContainer)
 
 @main
 struct MainApp: App {
@@ -27,7 +27,7 @@ struct MainApp: App {
 
     WindowGroup(id: "item", for: UUID.self) { $uid in
       if let uid {
-        SwiftDataQuery(predicate: #Predicate<TodoItem> { $0.uid == uid }) { item in
+        DbQuery(predicate: #Predicate<TodoItem> { $0.uid == uid }) { item in
           TodoItemDetailsView(item: item)
         }
       } else {

@@ -7,7 +7,7 @@ public protocol Timestamped {
   var dateUpdated: Date { get set }
 }
 
-public actor DbHandler<T>: ModelActor where T: PersistentModel, T: Timestamped {
+public actor DbCollection<T>: ModelActor where T: PersistentModel, T: Timestamped {
   // -----------------------
   // ModelActor conformance:
   // -----------------------

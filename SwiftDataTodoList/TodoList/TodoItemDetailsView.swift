@@ -10,6 +10,8 @@ public struct TodoItemDetailsView: View {
 
   public var body: some View {
     Text(item.summary)
+
+    TodoListItemView(item: item)
   }
 }
 

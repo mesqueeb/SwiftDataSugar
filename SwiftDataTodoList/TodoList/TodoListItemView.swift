@@ -11,7 +11,7 @@ struct TodoListItemView: View {
     Binding<String>(
       get: { item.summary },
       set: { newValue in
-        Task { try await dbTodo.update(id: item.id, \.summary, newValue) }
+        Task { try await dbTodos.update(id: item.id, \.summary, newValue) }
       }
     )
   }
@@ -20,7 +20,7 @@ struct TodoListItemView: View {
     withAnimation {
       let newValue = !item.isChecked
       Task {
-        try await dbTodo.update(id: item.id) { data in
+        try await dbTodos.update(id: item.id) { data in
           data.isChecked = newValue
           data.dateChecked = newValue ? Date() : nil
         }
@@ -33,13 +33,13 @@ struct TodoListItemView: View {
   private func deleteItem(_ item: TodoItem) {
     isDeleting = true
     withAnimation {
-      Task { try await dbTodo.delete(id: item.id) }
+      Task { try await dbTodos.delete(id: item.id) }
     }
   }
 
   private func finishEditing() {
     Task {
-      try await dbTodo.update(id: item.id, \.dateUpdated, Date())
+      try await dbTodos.update(id: item.id, \.dateUpdated, Date())
       isEditing = false
     }
   }

@@ -25,7 +25,7 @@ struct TodoListView: View {
     withAnimation {
       let data = TodoItem(summary: newItemSummary)
       Task {
-        try await dbTodo.insert(data)
+        try await dbTodos.insert(data)
         newItemSummary = ""
       }
     }
@@ -37,7 +37,7 @@ struct TodoListView: View {
         ScrollView {
           LazyVStack {
             Spacer(minLength: 8)
-            SwiftDataQuery(predicate: activePredicate, sortBy: activeSort) { item in
+            DbQuery(predicate: activePredicate, sortBy: activeSort) { item in
               TodoListItemView(item: item)
             }
             Spacer(minLength: 8)

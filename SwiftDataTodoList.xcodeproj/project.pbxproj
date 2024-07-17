@@ -12,15 +12,16 @@
 		F700A9832B9D6015006B249F /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A9822B9D6015006B249F /* TodoItem.swift */; };
 		F700A9852B9D6016006B249F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F700A9842B9D6016006B249F /* Assets.xcassets */; };
 		F700A9892B9D6016006B249F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F700A9882B9D6016006B249F /* Preview Assets.xcassets */; };
-		F700A9912B9D6333006B249F /* DbHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A9902B9D6333006B249F /* DbHandler.swift */; };
+		F700A9912B9D6333006B249F /* DbCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A9902B9D6333006B249F /* DbCollection.swift */; };
 		F700A9992B9DA166006B249F /* TodoListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A9982B9DA166006B249F /* TodoListItemView.swift */; };
 		F700A99B2B9DA31C006B249F /* CInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F700A99A2B9DA31C006B249F /* CInput.swift */; };
 		F7417C282C4357CE00C3C5FA /* Debouncify in Frameworks */ = {isa = PBXBuildFile; productRef = F7417C272C4357CE00C3C5FA /* Debouncify */; };
 		F7417C2A2C437C8400C3C5FA /* MenuFilterAndSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7417C292C437C8100C3C5FA /* MenuFilterAndSort.swift */; };
 		F7417C2C2C4381E800C3C5FA /* CButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7417C2B2C4381E700C3C5FA /* CButton.swift */; };
 		F749CE9C2BA921800070CB07 /* TodoItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749CE9B2BA921800070CB07 /* TodoItemDetailsView.swift */; };
-		F749D4702BA41A0800AA6B51 /* SwiftDataQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749D46F2BA41A0800AA6B51 /* SwiftDataQuery.swift */; };
+		F749D4702BA41A0800AA6B51 /* DbQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749D46F2BA41A0800AA6B51 /* DbQuery.swift */; };
 		F7891B1D2BA275AF00A89785 /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7891B1C2BA275AE00A89785 /* helpers.swift */; };
+		F7956A3B2C479E1000990CAB /* DbDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7956A3A2C479E1000990CAB /* DbDocument.swift */; };
 		F7C9F7262BA3BAC400A97B61 /* MenuCrashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C9F7252BA3BAC400A97B61 /* MenuCrashTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,14 +33,15 @@
 		F700A9842B9D6016006B249F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F700A9862B9D6016006B249F /* SwiftDataTodoList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftDataTodoList.entitlements; sourceTree = "<group>"; };
 		F700A9882B9D6016006B249F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F700A9902B9D6333006B249F /* DbHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbHandler.swift; sourceTree = "<group>"; };
+		F700A9902B9D6333006B249F /* DbCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbCollection.swift; sourceTree = "<group>"; };
 		F700A9982B9DA166006B249F /* TodoListItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListItemView.swift; sourceTree = "<group>"; };
 		F700A99A2B9DA31C006B249F /* CInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CInput.swift; sourceTree = "<group>"; };
 		F7417C292C437C8100C3C5FA /* MenuFilterAndSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuFilterAndSort.swift; sourceTree = "<group>"; };
 		F7417C2B2C4381E700C3C5FA /* CButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CButton.swift; sourceTree = "<group>"; };
 		F749CE9B2BA921800070CB07 /* TodoItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemDetailsView.swift; sourceTree = "<group>"; };
-		F749D46F2BA41A0800AA6B51 /* SwiftDataQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftDataQuery.swift; sourceTree = "<group>"; };
+		F749D46F2BA41A0800AA6B51 /* DbQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbQuery.swift; sourceTree = "<group>"; };
 		F7891B1C2BA275AE00A89785 /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
+		F7956A3A2C479E1000990CAB /* DbDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbDocument.swift; sourceTree = "<group>"; };
 		F7C9F7252BA3BAC400A97B61 /* MenuCrashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCrashTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,7 +81,6 @@
 				F700A97E2B9D6015006B249F /* MainApp.swift */,
 				F7C9F7252BA3BAC400A97B61 /* MenuCrashTests.swift */,
 				F7417C292C437C8100C3C5FA /* MenuFilterAndSort.swift */,
-				F749D46F2BA41A0800AA6B51 /* SwiftDataQuery.swift */,
 				F700A9842B9D6016006B249F /* Assets.xcassets */,
 				F76705882C438EB0009B37B8 /* Database */,
 				F700A9872B9D6016006B249F /* Preview Content */,
@@ -99,7 +100,9 @@
 		F76705882C438EB0009B37B8 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				F700A9902B9D6333006B249F /* DbHandler.swift */,
+				F700A9902B9D6333006B249F /* DbCollection.swift */,
+				F7956A3A2C479E1000990CAB /* DbDocument.swift */,
+				F749D46F2BA41A0800AA6B51 /* DbQuery.swift */,
 				F700A9822B9D6015006B249F /* TodoItem.swift */,
 			);
 			path = Database;
@@ -201,9 +204,10 @@
 				F7891B1D2BA275AF00A89785 /* helpers.swift in Sources */,
 				F700A9832B9D6015006B249F /* TodoItem.swift in Sources */,
 				F700A97F2B9D6015006B249F /* MainApp.swift in Sources */,
-				F700A9912B9D6333006B249F /* DbHandler.swift in Sources */,
-				F749D4702BA41A0800AA6B51 /* SwiftDataQuery.swift in Sources */,
+				F700A9912B9D6333006B249F /* DbCollection.swift in Sources */,
+				F749D4702BA41A0800AA6B51 /* DbQuery.swift in Sources */,
 				F749CE9C2BA921800070CB07 /* TodoItemDetailsView.swift in Sources */,
+				F7956A3B2C479E1000990CAB /* DbDocument.swift in Sources */,
 				F7417C2C2C4381E800C3C5FA /* CButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
