@@ -12,6 +12,7 @@ let filterOptions: [Option<Bool>] = [
 ]
 
 struct TodoListView: View {
+  @Environment(\.modelContext) private var modelContext
   @State private var activeSort: [SortDescriptor<TodoItem>] = sortOptions[0].value
   @State private var searchText: String = ""
   @State private var showChecked: Bool = true
@@ -37,8 +38,8 @@ struct TodoListView: View {
         ScrollView {
           LazyVStack {
             Spacer(minLength: 8)
-            DbQuery(predicate: activePredicate, sortBy: activeSort) { item in
-              TodoListItemView(item: item)
+            DbQuery(predicate: activePredicate, sortBy: activeSort) { item, doc in
+              TodoListItemView(item: item, doc: doc)
             }
             Spacer(minLength: 8)
           }

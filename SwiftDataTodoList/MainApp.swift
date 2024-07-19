@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-let sharedModelContainer: ModelContainer = {
+public let sharedModelContainer: ModelContainer = {
   let schema = Schema([
     TodoItem.self,
   ])
@@ -15,7 +15,7 @@ let sharedModelContainer: ModelContainer = {
 }()
 
 @MainActor
-let dbTodos = DbCollection<TodoItem>(modelContainer: sharedModelContainer)
+public let dbTodos = DbCollection<TodoItem>(modelContainer: sharedModelContainer)
 
 @main
 struct MainApp: App {
@@ -27,8 +27,8 @@ struct MainApp: App {
 
     WindowGroup(id: "item", for: UUID.self) { $uid in
       if let uid {
-        DbQuery(predicate: #Predicate<TodoItem> { $0.uid == uid }) { item in
-          TodoItemDetailsView(item: item)
+        DbQuery(predicate: #Predicate<TodoItem> { $0.uid == uid }) { item, doc in
+          TodoItemDetailsView(item: item, doc: doc)
         }
       } else {
         Text("ID not provided")
