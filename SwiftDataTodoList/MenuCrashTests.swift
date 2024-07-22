@@ -73,6 +73,33 @@ struct MenuCrashTests: View {
     }
   }
 
+  func raceTests() {
+    let item = TodoItem(summary: "RACE")
+    Task {
+      try await dbTodos.insert(item)
+      await wait(ms: 50)
+
+      let newDate = Date()
+
+      Task.detached { try await dbTodos.update(id: item.id) { data in data.isChecked = true } }
+      Task.detached { try await dbTodos.update(id: item.id) { data in data.summary = "RACED" } }
+      Task.detached { try await dbTodos.update(id: item.id) { data in data.dateChecked = newDate } }
+
+      await wait(ms: 50)
+
+      Task.detached {
+        if let data = try await dbTodos.fetch(id: item.id) {
+          print("data.isChecked == true →", data.isChecked == true)
+          print("data.summary == \"RACED\" →", data.summary == "RACED")
+          print("data.dateChecked == newDate →", data.dateChecked == newDate)
+        }
+      }
+
+      // One of the edits above should by now have been applied the `@Query` _should_ pick up this update automatically
+      // Question: Why does the list of items not get refreshed. (re-running the app _will_ show the edit reflected)
+    }
+  }
+
   func inspectPID() {
     let item = TodoItem(summary: "Inspect PID")
     let uid: String = item.uid.uuidString
@@ -90,6 +117,7 @@ struct MenuCrashTests: View {
       Button("Insert Tests", action: insertTests)
       Button("Delete Tests", action: deleteTests)
       Button("Edit Tests", action: editTests)
+      Button("Race Tests", action: raceTests)
       Button("Inspect PID", action: inspectPID)
     } label: { Label("Run Tests", systemImage: "ellipsis.curlybraces") }
       .pickerStyle(.inline)

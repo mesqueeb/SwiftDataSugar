@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-public struct DbQuery<T, Content: View>: View where T: PersistentModel, T: Timestamped {
+public struct DbQuery<T, Content: View>: View where T: PersistentModel, T: CollectionDocument {
   @Query private var items: [T]
 
   let content: (_ item: T) -> Content

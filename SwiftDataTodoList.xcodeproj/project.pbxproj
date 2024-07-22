@@ -21,7 +21,6 @@
 		F749CE9C2BA921800070CB07 /* TodoItemDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749CE9B2BA921800070CB07 /* TodoItemDetailsView.swift */; };
 		F749D4702BA41A0800AA6B51 /* DbQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749D46F2BA41A0800AA6B51 /* DbQuery.swift */; };
 		F7891B1D2BA275AF00A89785 /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7891B1C2BA275AE00A89785 /* helpers.swift */; };
-		F7956A3B2C479E1000990CAB /* DbDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7956A3A2C479E1000990CAB /* DbDocument.swift */; };
 		F7C9F7262BA3BAC400A97B61 /* MenuCrashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C9F7252BA3BAC400A97B61 /* MenuCrashTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,7 +40,6 @@
 		F749CE9B2BA921800070CB07 /* TodoItemDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemDetailsView.swift; sourceTree = "<group>"; };
 		F749D46F2BA41A0800AA6B51 /* DbQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbQuery.swift; sourceTree = "<group>"; };
 		F7891B1C2BA275AE00A89785 /* helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
-		F7956A3A2C479E1000990CAB /* DbDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DbDocument.swift; sourceTree = "<group>"; };
 		F7C9F7252BA3BAC400A97B61 /* MenuCrashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCrashTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,7 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				F700A9902B9D6333006B249F /* DbCollection.swift */,
-				F7956A3A2C479E1000990CAB /* DbDocument.swift */,
 				F749D46F2BA41A0800AA6B51 /* DbQuery.swift */,
 				F700A9822B9D6015006B249F /* TodoItem.swift */,
 			);
@@ -207,7 +204,6 @@
 				F700A9912B9D6333006B249F /* DbCollection.swift in Sources */,
 				F749D4702BA41A0800AA6B51 /* DbQuery.swift in Sources */,
 				F749CE9C2BA921800070CB07 /* TodoItemDetailsView.swift in Sources */,
-				F7956A3B2C479E1000990CAB /* DbDocument.swift in Sources */,
 				F7417C2C2C4381E800C3C5FA /* CButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

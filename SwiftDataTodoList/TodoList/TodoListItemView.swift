@@ -11,7 +11,9 @@ struct TodoListItemView: View {
     Binding<String>(
       get: { item.summary },
       set: { newValue in
-        Task { try await dbTodos.update(id: item.id, \.summary, newValue) }
+        Task { try await dbTodos.update(id: item.id) { data in
+          data.summary = newValue
+        } }
       }
     )
   }

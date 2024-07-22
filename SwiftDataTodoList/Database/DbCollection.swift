@@ -2,12 +2,11 @@ import Foundation
 import SwiftData
 
 /// Makes sure there's a `dateUpdated` because it's required to better track
-/// updates to instances that were modified from a detached thread, sometimes a @Query won't pick up on those.
-public protocol Timestamped {
+public protocol CollectionDocument {
   var dateUpdated: Date { get set }
 }
 
-public actor DbCollection<T>: ModelActor where T: PersistentModel, T: Timestamped {
+public actor DbCollection<T>: ModelActor where T: PersistentModel, T: CollectionDocument {
   // -----------------------
   // ModelActor conformance:
   // -----------------------
@@ -17,7 +16,7 @@ public actor DbCollection<T>: ModelActor where T: PersistentModel, T: Timestampe
   @MainActor
   public init(modelContainer: SwiftData.ModelContainer) {
     let modelContext = modelContainer.mainContext
-    modelExecutor = DefaultSerialModelExecutor(modelContext: modelContext)
+    self.modelExecutor = DefaultSerialModelExecutor(modelContext: modelContext)
     self.modelContainer = modelContainer
   }
 
@@ -41,11 +40,13 @@ public actor DbCollection<T>: ModelActor where T: PersistentModel, T: Timestampe
     try modelContext.save()
   }
 
-  public func update(id: PersistentIdentifier, _ updateFn: @escaping @Sendable (T) -> Void) throws {
-    guard var data = fetch(id: id) else { return }
-    updateFn(data)
+  /// Returns `nil` if the record is not found, otherwise it returns the result of the `updateFn` closure being passed
+  public func update<Result: Sendable>(id: PersistentIdentifier, _ updateFn: @escaping (T) -> Result) throws -> Result? {
+    guard var data = fetch(id: id) else { return nil }
+    let result = updateFn(data)
     data.dateUpdated = .now
     try modelContext.save()
+    return result
   }
 
   public func fetch(id: PersistentIdentifier) -> T? {
