@@ -1,3 +1,4 @@
+import DatabaseKit
 import SwiftData
 import SwiftUI
 
@@ -11,7 +12,9 @@ let filterOptions: [Option<Bool>] = [
   (label: "Hide Checked Items", value: false),
 ]
 
-struct TodoListView: View {
+public struct TodoListView: View {
+  public init() {}
+
   @State private var activeSort: [SortDescriptor<TodoItem>] = sortOptions[0].value
   @State private var searchText: String = ""
   @State private var showChecked: Bool = true
@@ -22,16 +25,14 @@ struct TodoListView: View {
 
   private func addItem() {
     if newItemSummary.isEmpty { return }
-    withAnimation {
-      let data = TodoItem(summary: newItemSummary)
-      Task {
-        try await dbTodos.insert(data)
-        newItemSummary = ""
-      }
-    }
+    let data = TodoItemSnapshot(summary: newItemSummary)
+    withAnimation { Task {
+      try await dbTodos.insert(data)
+      newItemSummary = ""
+    } }
   }
 
-  var body: some View {
+  public var body: some View {
     NavigationStack {
       VStack {
         ScrollView {

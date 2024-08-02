@@ -1,21 +1,10 @@
+import DatabaseKit
 import SwiftData
 import SwiftUI
 
-let sharedModelContainer: ModelContainer = {
-  let schema = Schema([
-    TodoItem.self,
-  ])
-  let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+@MainActor public let modelContainer = initModelContainer(for: TodoItem.self, with: MigrationPlan.self, inMemory: false)
 
-  do {
-    return try ModelContainer(for: schema, configurations: [modelConfiguration])
-  } catch {
-    fatalError("Could not create ModelContainer: \(error)")
-  }
-}()
-
-@MainActor
-let dbTodos = DbCollection<TodoItem>(modelContainer: sharedModelContainer)
+@MainActor public let dbTodos = DbCollection<TodoItem>(modelContainer: modelContainer)
 
 @main
 struct MainApp: App {
@@ -23,7 +12,7 @@ struct MainApp: App {
     WindowGroup(id: "main") {
       TodoListView()
     }
-    .modelContainer(sharedModelContainer)
+    .modelContainer(modelContainer)
 
     WindowGroup(id: "item", for: UUID.self) { $uid in
       if let uid {
@@ -34,6 +23,6 @@ struct MainApp: App {
         Text("ID not provided")
       }
     }
-    .modelContainer(sharedModelContainer)
+    .modelContainer(modelContainer)
   }
 }

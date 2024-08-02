@@ -1,8 +1,14 @@
 import SwiftData
 import SwiftUI
 
-struct TodoListItemView: View {
+public struct TodoListItemView: View {
   let item: TodoItem
+  let id: PersistentIdentifier
+
+  public init(item: TodoItem) {
+    self.item = item
+    self.id = item.id
+  }
 
   @Environment(\.openWindow) private var openWindow
   @State private var isEditing: Bool = false
@@ -11,7 +17,7 @@ struct TodoListItemView: View {
     Binding<String>(
       get: { item.summary },
       set: { newValue in
-        Task { try await dbTodos.update(id: item.id) { data in
+        Task.detached { try await dbTodos.update(id: id) { data in
           data.summary = newValue
         } }
       }
@@ -21,8 +27,8 @@ struct TodoListItemView: View {
   private func toggleChecked(_ item: TodoItem) {
     withAnimation {
       let newValue = !item.isChecked
-      Task {
-        try await dbTodos.update(id: item.id) { data in
+      Task.detached {
+        try await dbTodos.update(id: id) { data in
           data.isChecked = newValue
           data.dateChecked = newValue ? Date() : nil
         }
@@ -34,19 +40,19 @@ struct TodoListItemView: View {
   @State private var isDeleting = false
   private func deleteItem(_ item: TodoItem) {
     isDeleting = true
-    withAnimation {
-      Task { try await dbTodos.delete(id: item.id) }
+    _ = withAnimation {
+      Task { try await dbTodos.delete(id: id) }
     }
   }
 
   private func finishEditing() {
-    Task {
-      try await dbTodos.update(id: item.id, \.dateUpdated, Date())
-      isEditing = false
+    Task.detached {
+      try await dbTodos.update(id: id) { data in data.dateUpdated = Date() }
+      Task { @MainActor in self.isEditing = false }
     }
   }
 
-  var body: some View {
+  public var body: some View {
     HStack {
       CButton(action: { toggleChecked(item) }) {
         Image(systemName: item.isChecked ? "checkmark.square" : "square")

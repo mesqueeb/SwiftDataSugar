@@ -1,7 +1,7 @@
 import SwiftData
 import SwiftUI
 
-public struct DbQuery<T, Content: View>: View where T: PersistentModel, T: CollectionDocument {
+public struct DbQuery<T, Content: View>: View where T: PersistentModel & CollectionDocument & SendableDocument {
   @Query private var items: [T]
 
   let content: (_ item: T) -> Content
