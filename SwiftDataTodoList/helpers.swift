@@ -13,12 +13,3 @@ public func printMemoryAddress(_ description: String, _ ctx: ModelContext?) {
 public func printGCDThread(_ description: String = "") {
   print("\(description) Thread: \(String(validatingUTF8: __dispatch_queue_get_label(nil)) ?? "unknown")")
 }
-
-/// Wait for a fixed amount of milliseconds
-public func wait(ms: UInt64) async {
-  do {
-    try await Task.sleep(nanoseconds: ms * 1_000_000)
-  } catch {
-    print(error)
-  }
-}

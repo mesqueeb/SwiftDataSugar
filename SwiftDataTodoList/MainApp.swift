@@ -2,7 +2,9 @@ import DatabaseKit
 import SwiftData
 import SwiftUI
 
-@MainActor public let modelContainer = initModelContainer(for: TodoItem.self, with: MigrationPlan.self, inMemory: false)
+public typealias LatestSchema = Schema1_2_0
+
+@MainActor public let modelContainer = initModelContainer(for: LatestSchema.self, with: MigrationPlan.self, inMemory: false)
 
 @MainActor public let dbTodos = DbCollection<TodoItem>(modelContainer: modelContainer)
 

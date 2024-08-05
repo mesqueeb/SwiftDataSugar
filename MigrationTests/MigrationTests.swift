@@ -1,3 +1,4 @@
+import DatabaseKit
 import Foundation
 import SwiftData
 @testable import SwiftDataTodoList
@@ -9,9 +10,9 @@ final class MigrationTests {
   var context: ModelContext!
 
   // TODO: I’m not sure if you can migrate in memory DB, as they’re deleted when closed and you need to close and reopen to migrate afaik.
-  func initModelContainer<VS: VersionedSchema & MockableSchema, M: SchemaMigrationPlan>(
+  func initModelContainer<VS: VersionedSchema & MockableSchema>(
     for schema: VS.Type,
-    with migrationPlan: M.Type
+    with migrationPlan: (any SchemaMigrationPlan.Type)?
   ) -> ModelContainer {
     let schema = SwiftData.Schema(versionedSchema: schema)
     let config = ModelConfiguration(schema: schema, url: url)
@@ -40,24 +41,55 @@ final class MigrationTests {
     try? FileManager.default.removeItem(at: url.deletingPathExtension().appendingPathExtension("store-wal"))
   }
 
-  @Test func testMigration1_0_0to1_1_0() async throws {
-    container = initModelContainer(for: Schema1_0_0.self, with: MigrationPlan.self)
+  @Test func migrateTo1_1_0() async throws {
+    struct RelevantMigrationPlan: SchemaMigrationPlan {
+      static var schemas: [any VersionedSchema.Type] { [Schema1_0_0.self, MigrateTo1_1_0.toVersion] }
+      static var stages: [MigrationStage] { [MigrateTo1_1_0.stage] }
+    }
+
+    container = initModelContainer(for: Schema1_0_0.self, with: nil)
     context = ModelContext(container)
 
     Schema1_0_0.insertMocks(context: context)
-    let records1_0_0 = try context.fetch(FetchDescriptor<Schema1_0_0.TodoItem>())
+    let oldRecords = try context.fetch(FetchDescriptor<Schema1_0_0.TodoItem>())
 
-    #expect(records1_0_0.count == 1, "mocks not inserted")
+    #expect(oldRecords.count == 1, "mocks not inserted or cleaned up")
 
-    // Migration 1_0_0 → 1_1_0
-    container = initModelContainer(for: Schema1_1_0.self, with: MigrationPlan.self)
+    // ============================================================
+    // Perform the migration by reinitialising the model container!
+    // ============================================================
+
+    container = initModelContainer(for: Schema1_1_0.self, with: RelevantMigrationPlan.self)
     context = ModelContext(container)
 
-    // Assert: schema changes
-    let records1_1_0 = try context.fetch(FetchDescriptor<Schema1_1_0.TodoItem>())
-    #expect(records1_1_0.allSatisfy { $0.editHistory.history.isEmpty })
+    let newRecords = try context.fetch(FetchDescriptor<Schema1_1_0.TodoItem>())
+    #expect(newRecords.allSatisfy { $0.editHistory.history.isEmpty })
+    #expect(oldRecords.count == newRecords.count, "Number of records before and after migration are different.")
+  }
 
-    // Assert: there are the same number of records before and after the migration
-    #expect(records1_0_0.count == records1_1_0.count, "Number of records before and after migration are different.")
+  @Test func migrateTo1_2_0() async throws {
+    struct RelevantMigrationPlan: SchemaMigrationPlan {
+      static var schemas: [any VersionedSchema.Type] { [Schema1_1_0.self, MigrateTo1_2_0.toVersion] }
+      static var stages: [MigrationStage] { [MigrateTo1_2_0.stage] }
+    }
+
+    container = initModelContainer(for: Schema1_1_0.self, with: nil)
+    context = ModelContext(container)
+
+    Schema1_1_0.insertMocks(context: context)
+    let oldRecords = try context.fetch(FetchDescriptor<Schema1_1_0.TodoItem>())
+
+    #expect(oldRecords.count == 1, "mocks not inserted or cleaned up")
+
+    // ============================================================
+    // Perform the migration by reinitialising the model container!
+    // ============================================================
+
+    container = initModelContainer(for: Schema1_2_0.self, with: RelevantMigrationPlan.self)
+    context = ModelContext(container)
+
+    let newRecords = try context.fetch(FetchDescriptor<Schema1_2_0.TodoItem>())
+    #expect(newRecords.allSatisfy { $0.v == "1.2.0" })
+    #expect(oldRecords.count == newRecords.count, "Number of records before and after migration are different.")
   }
 }

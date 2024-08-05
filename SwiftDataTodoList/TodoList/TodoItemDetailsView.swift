@@ -11,6 +11,9 @@ public struct TodoItemDetailsView: View {
   public var body: some View {
     Text(item.summary)
 
+    Text("edit history versions: \(item.editHistory.history.count)")
+    Text("schema version: \(item.v)")
+
     TodoListItemView(item: item)
   }
 }

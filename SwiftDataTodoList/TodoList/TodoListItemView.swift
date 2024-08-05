@@ -47,7 +47,10 @@ public struct TodoListItemView: View {
 
   private func finishEditing() {
     Task.detached {
-      try await dbTodos.update(id: id) { data in data.dateUpdated = Date() }
+      try await dbTodos.update(id: id) { data in
+        data.dateUpdated = Date()
+        data.editHistory.addEntry(from: data)
+      }
       Task { @MainActor in self.isEditing = false }
     }
   }

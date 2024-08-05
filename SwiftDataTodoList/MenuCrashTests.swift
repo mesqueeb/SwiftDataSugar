@@ -34,16 +34,16 @@ public struct MenuCrashTests: View {
         for item in items {
           group.addTask { try await dbTodos.insert(item) }
         }
-        for try await task in group {}
+        for try await _task in group {}
       }
-      await wait(ms: 50)
+      try! await Task.sleep(for: .milliseconds(50))
 
       Task { @MainActor in try await dbTodos.delete(uid: items[0].uid) }
       Task { @MainActor in try await dbTodos.delete(uid: items[1].uid) }
       Task.detached { try await dbTodos.delete(uid: items[2].uid) }
       Task.detached { try await dbTodos.delete(uid: items[3].uid) }
 
-      await wait(ms: 50)
+      try! await Task.sleep(for: .milliseconds(50))
 
       let queryItemsToDelete: [PersistentIdentifier] = [queryItems[0].id, queryItems[1].id, queryItems[2].id, queryItems[3].id]
       Task { @MainActor in try await dbTodos.delete(id: queryItemsToDelete[0]) }
@@ -61,13 +61,13 @@ public struct MenuCrashTests: View {
     let item = TodoItemSnapshot(summary: "Item to edit")
     Task {
       try await dbTodos.insert(item)
-      await wait(ms: 50)
+      try! await Task.sleep(for: .milliseconds(50))
 
       // The following tasks all use the Actor to update, so the app should not crash.
       Task.detached { try await dbTodos.update(uid: item.uid) { data in data.summary = "Edit A" } }
       Task.detached { try await dbTodos.update(uid: item.uid) { data in data.summary = "Edit B" } }
 
-      await wait(ms: 50)
+      try! await Task.sleep(for: .milliseconds(50))
 
       let queryItemId = queryItems[0].id
       Task.detached { try await dbTodos.update(id: queryItemId) { data in data.summary = "Edit C" } }
@@ -82,7 +82,7 @@ public struct MenuCrashTests: View {
     let item = TodoItemSnapshot(summary: "RACE")
     Task {
       try await dbTodos.insert(item)
-      await wait(ms: 50)
+      try! await Task.sleep(for: .milliseconds(50))
 
       let newDate = Date()
 
@@ -90,7 +90,7 @@ public struct MenuCrashTests: View {
       Task.detached { try await dbTodos.update(uid: item.uid) { data in data.summary = "RACED" } }
       Task.detached { try await dbTodos.update(uid: item.uid) { data in data.dateChecked = newDate } }
 
-      await wait(ms: 50)
+      try! await Task.sleep(for: .milliseconds(50))
 
       Task.detached {
         if let data = try! await dbTodos.fetch(uid: item.uid) {

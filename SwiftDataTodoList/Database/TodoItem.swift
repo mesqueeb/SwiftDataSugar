@@ -2,10 +2,22 @@ import DatabaseKit
 import Foundation
 import SwiftData
 
-public typealias TodoItem = Schema1_1_0.TodoItem
-public typealias EditHistory = Schema1_1_0.EditHistory
+public typealias TodoItem = LatestSchema.TodoItem
+let currentVersion: String = LatestSchema.versionIdentifier.description
 
 public extension TodoItem {
+  convenience init(summary: String) {
+    self.init(
+      uid: UUID(),
+      dateCreated: Date(),
+      dateUpdated: Date(),
+      dateChecked: nil,
+      summary: summary,
+      isChecked: false,
+      editHistory: EditHistory(history: [:])
+    )
+  }
+
   /// QUERY
   static func query(searchText: String = "", showChecked: Bool = true) -> Predicate<TodoItem>? {
     let q = searchText.lowercased()
@@ -32,6 +44,7 @@ public extension TodoItem {
 }
 
 public struct TodoItemSnapshot: Codable, Sendable {
+  public var v: String
   public var uid: UUID
   public var dateCreated: Date
   public var dateUpdated: Date
@@ -41,6 +54,7 @@ public struct TodoItemSnapshot: Codable, Sendable {
   public var editHistory: EditHistory
 
   public init(
+    v: String,
     uid: UUID,
     dateCreated: Date,
     dateUpdated: Date,
@@ -49,7 +63,7 @@ public struct TodoItemSnapshot: Codable, Sendable {
     isChecked: Bool,
     editHistory: EditHistory
   ) {
-    self.uid = uid
+    self.v = v
     self.uid = uid
     self.dateCreated = dateCreated
     self.dateUpdated = dateUpdated
@@ -60,13 +74,16 @@ public struct TodoItemSnapshot: Codable, Sendable {
   }
 
   public init(summary: String) {
-    self.uid = UUID()
-    self.dateCreated = Date()
-    self.dateUpdated = Date()
-    self.dateChecked = nil
-    self.summary = summary
-    self.isChecked = false
-    self.editHistory = EditHistory()
+    self.init(
+      v: currentVersion,
+      uid: UUID(),
+      dateCreated: Date(),
+      dateUpdated: Date(),
+      dateChecked: nil,
+      summary: summary,
+      isChecked: false,
+      editHistory: EditHistory()
+    )
   }
 }
 
@@ -87,6 +104,7 @@ extension TodoItem: SendableDocument {
 
   public func toSendable() -> SendableType {
     return SendableType(
+      v: self.v,
       uid: uid,
       dateCreated: dateCreated,
       dateUpdated: dateUpdated,

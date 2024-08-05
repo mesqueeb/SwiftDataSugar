@@ -38,15 +38,6 @@ public enum Schema1_0_0: VersionedSchema, MockableSchema {
       self.isChecked = isChecked
     }
     
-    public init(summary: String) {
-      self.uid = UUID()
-      self.dateCreated = Date()
-      self.dateUpdated = Date()
-      self.dateChecked = nil
-      self.summary = summary
-      self.isChecked = false
-    }
-    
     // ╔═════════╗
     // ║ CODABLE ║
     // ╚═════════╝
@@ -77,7 +68,14 @@ public enum Schema1_0_0: VersionedSchema, MockableSchema {
   }
   
   public static func insertMocks(context: ModelContext) {
-    let mock = Schema1_0_0.TodoItem(summary: "test")
+    let mock = Schema1_0_0.TodoItem(
+      uid: UUID(),
+      dateCreated: Date(),
+      dateUpdated: Date(),
+      dateChecked: Date(),
+      summary: "Test",
+      isChecked: false
+    )
     context.insert(mock)
     try! context.save()
   }
