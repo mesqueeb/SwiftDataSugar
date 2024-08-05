@@ -1,0 +1,24 @@
+{
+  "name": "SwiftDataSugar",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "bump": "np --no-cleanup --no-publish",
+    "test": "swift test --enable-swift-testing",
+    "postversion": "replace-regex --from=\"\\d+\\.\\d+\\.\\d+\" --to=\"$npm_package_version\" README.md && git add README.md && git commit -m \"chore: bump\""
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "np": "^10.0.5",
+    "replace-regex": "^0.0.3"
+  },
+  "funding": "https://github.com/sponsors/mesqueeb",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mesqueeb/SwiftDataSugar.git"
+  },
+  "homepage": "https://github.com/mesqueeb/SwiftDataSugar#readme",
+  "bugs": "https://github.com/mesqueeb/SwiftDataSugar/issues"
+}
