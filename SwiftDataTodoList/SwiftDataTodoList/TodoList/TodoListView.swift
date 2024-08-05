@@ -1,5 +1,5 @@
-import SwiftDataSugar
 import SwiftData
+import SwiftDataSugar
 import SwiftUI
 
 let sortOptions: [Option<[SortDescriptor<TodoItem>]>] = [
@@ -26,7 +26,7 @@ public struct TodoListView: View {
   private func addItem() {
     if newItemSummary.isEmpty { return }
     let data = TodoItemSnapshot(summary: newItemSummary)
-    withAnimation { Task {
+    _ = withAnimation { Task {
       try await dbTodos.insert(data)
       newItemSummary = ""
     } }
@@ -38,8 +38,11 @@ public struct TodoListView: View {
         ScrollView {
           LazyVStack {
             Spacer(minLength: 8)
-            DbQuery(predicate: activePredicate, sortBy: activeSort) { item in
-              TodoListItemView(item: item)
+            DbQuery(predicate: activePredicate, sortBy: activeSort) { items in
+              ForEach(items, id: \.id) { item in
+                TodoListItemView(item: item)
+                  .id(item.id) // Use ID for List reordering and animations
+              }
             }
             Spacer(minLength: 8)
           }

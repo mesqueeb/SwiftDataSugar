@@ -7,46 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F7417C282C4357CE00C3C5FA /* Debouncify in Frameworks */ = {isa = PBXBuildFile; productRef = F7417C272C4357CE00C3C5FA /* Debouncify */; };
-		F77DEABE2C606268009CB94D /* MapSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F77DEABD2C606268009CB94D /* MapSugar */; };
-		F7D834CC2C4E8F1D00C9C3E3 /* SwiftDataSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F7D834CB2C4E8F1D00C9C3E3 /* SwiftDataSugar */; };
+		F77DEC152C606D48009CB94D /* SwiftDataSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F77DEC142C606D48009CB94D /* SwiftDataSugar */; };
+		F77DEC1C2C606DB1009CB94D /* MapSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F77DEC1B2C606DB1009CB94D /* MapSugar */; };
+		F77DEC1F2C606DBD009CB94D /* Debouncify in Frameworks */ = {isa = PBXBuildFile; productRef = F77DEC1E2C606DBD009CB94D /* Debouncify */; };
+		F77DEC4E2C606EC9009CB94D /* MigrationTests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = F77DEC4D2C606EC9009CB94D /* MigrationTests.xctestplan */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F7C064D12C5B88FA00993562 /* PBXContainerItemProxy */ = {
+		F77DEBD42C606C6D009CB94D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F700A9732B9D6015006B249F /* Project object */;
+			containerPortal = F77DEBB82C606C6B009CB94D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = F700A97A2B9D6015006B249F;
+			remoteGlobalIDString = F77DEBBF2C606C6B009CB94D;
 			remoteInfo = SwiftDataTodoList;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F700A97B2B9D6015006B249F /* SwiftDataTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataTodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F77DEAE82C606572009CB94D /* MigrationTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MigrationTests.xctestplan; sourceTree = "<group>"; };
-		F77DEB3B2C606672009CB94D /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		F7C064CD2C5B88FA00993562 /* MigrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MigrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7D834C62C4E8D8400C9C3E3 /* SwiftDataSugar */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftDataSugar; sourceTree = "<group>"; };
+		F77DEBC02C606C6B009CB94D /* SwiftDataTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataTodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F77DEBD32C606C6D009CB94D /* MigrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MigrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F77DEC172C606D59009CB94D /* SwiftDataSugar */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftDataSugar; path = ../SwiftDataSugar; sourceTree = "<group>"; };
+		F77DEC4D2C606EC9009CB94D /* MigrationTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MigrationTests.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F725D7662C5B4B4C0048623D /* SwiftDataTodoList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SwiftDataTodoList; sourceTree = "<group>"; };
-		F7C064CE2C5B88FA00993562 /* MigrationTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MigrationTests; sourceTree = "<group>"; };
+		F77DEBC22C606C6B009CB94D /* SwiftDataTodoList */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SwiftDataTodoList; sourceTree = "<group>"; };
+		F77DEBD62C606C6D009CB94D /* MigrationTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = MigrationTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F700A9782B9D6015006B249F /* Frameworks */ = {
+		F77DEBBD2C606C6B009CB94D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7D834CC2C4E8F1D00C9C3E3 /* SwiftDataSugar in Frameworks */,
-				F7417C282C4357CE00C3C5FA /* Debouncify in Frameworks */,
-				F77DEABE2C606268009CB94D /* MapSugar in Frameworks */,
+				F77DEC1F2C606DBD009CB94D /* Debouncify in Frameworks */,
+				F77DEC1C2C606DB1009CB94D /* MapSugar in Frameworks */,
+				F77DEC152C606D48009CB94D /* SwiftDataSugar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7C064CA2C5B88FA00993562 /* Frameworks */ = {
+		F77DEBD02C606C6D009CB94D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -56,147 +56,155 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F700A9722B9D6015006B249F = {
+		F77DEBB72C606C6B009CB94D = {
 			isa = PBXGroup;
 			children = (
-				F77DEAE82C606572009CB94D /* MigrationTests.xctestplan */,
-				F7D834C62C4E8D8400C9C3E3 /* SwiftDataSugar */,
-				F725D7662C5B4B4C0048623D /* SwiftDataTodoList */,
-				F7C064CE2C5B88FA00993562 /* MigrationTests */,
-				F700A97C2B9D6015006B249F /* Products */,
-				F77DEB3B2C606672009CB94D /* Package.swift */,
+				F77DEC4D2C606EC9009CB94D /* MigrationTests.xctestplan */,
+				F77DEBC22C606C6B009CB94D /* SwiftDataTodoList */,
+				F77DEBD62C606C6D009CB94D /* MigrationTests */,
+				F77DEBC12C606C6B009CB94D /* Products */,
+				F77DEC162C606D59009CB94D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		F700A97C2B9D6015006B249F /* Products */ = {
+		F77DEBC12C606C6B009CB94D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F700A97B2B9D6015006B249F /* SwiftDataTodoList.app */,
-				F7C064CD2C5B88FA00993562 /* MigrationTests.xctest */,
+				F77DEBC02C606C6B009CB94D /* SwiftDataTodoList.app */,
+				F77DEBD32C606C6D009CB94D /* MigrationTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F77DEC162C606D59009CB94D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F77DEC172C606D59009CB94D /* SwiftDataSugar */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F700A97A2B9D6015006B249F /* SwiftDataTodoList */ = {
+		F77DEBBF2C606C6B009CB94D /* SwiftDataTodoList */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F700A98C2B9D6016006B249F /* Build configuration list for PBXNativeTarget "SwiftDataTodoList" */;
+			buildConfigurationList = F77DEBE72C606C6D009CB94D /* Build configuration list for PBXNativeTarget "SwiftDataTodoList" */;
 			buildPhases = (
-				F700A9772B9D6015006B249F /* Sources */,
-				F700A9782B9D6015006B249F /* Frameworks */,
-				F700A9792B9D6015006B249F /* Resources */,
+				F77DEBBC2C606C6B009CB94D /* Sources */,
+				F77DEBBD2C606C6B009CB94D /* Frameworks */,
+				F77DEBBE2C606C6B009CB94D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				F725D7662C5B4B4C0048623D /* SwiftDataTodoList */,
+				F77DEBC22C606C6B009CB94D /* SwiftDataTodoList */,
 			);
 			name = SwiftDataTodoList;
 			packageProductDependencies = (
-				F7417C272C4357CE00C3C5FA /* Debouncify */,
-				F7D834CB2C4E8F1D00C9C3E3 /* SwiftDataSugar */,
-				F77DEABD2C606268009CB94D /* MapSugar */,
+				F77DEC142C606D48009CB94D /* SwiftDataSugar */,
+				F77DEC1B2C606DB1009CB94D /* MapSugar */,
+				F77DEC1E2C606DBD009CB94D /* Debouncify */,
 			);
 			productName = SwiftDataTodoList;
-			productReference = F700A97B2B9D6015006B249F /* SwiftDataTodoList.app */;
+			productReference = F77DEBC02C606C6B009CB94D /* SwiftDataTodoList.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F7C064CC2C5B88FA00993562 /* MigrationTests */ = {
+		F77DEBD22C606C6D009CB94D /* MigrationTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F7C064D32C5B88FA00993562 /* Build configuration list for PBXNativeTarget "MigrationTests" */;
+			buildConfigurationList = F77DEBEA2C606C6D009CB94D /* Build configuration list for PBXNativeTarget "MigrationTests" */;
 			buildPhases = (
-				F7C064C92C5B88FA00993562 /* Sources */,
-				F7C064CA2C5B88FA00993562 /* Frameworks */,
-				F7C064CB2C5B88FA00993562 /* Resources */,
+				F77DEBCF2C606C6D009CB94D /* Sources */,
+				F77DEBD02C606C6D009CB94D /* Frameworks */,
+				F77DEBD12C606C6D009CB94D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F7C064D22C5B88FA00993562 /* PBXTargetDependency */,
+				F77DEBD52C606C6D009CB94D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				F7C064CE2C5B88FA00993562 /* MigrationTests */,
+				F77DEBD62C606C6D009CB94D /* MigrationTests */,
 			);
 			name = MigrationTests;
 			packageProductDependencies = (
 			);
-			productName = MigrationTests;
-			productReference = F7C064CD2C5B88FA00993562 /* MigrationTests.xctest */;
+			productName = SwiftDataTodoListTests;
+			productReference = F77DEBD32C606C6D009CB94D /* MigrationTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F700A9732B9D6015006B249F /* Project object */ = {
+		F77DEBB82C606C6B009CB94D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
-					F700A97A2B9D6015006B249F = {
-						CreatedOnToolsVersion = 15.3;
-					};
-					F7C064CC2C5B88FA00993562 = {
+					F77DEBBF2C606C6B009CB94D = {
 						CreatedOnToolsVersion = 16.0;
-						TestTargetID = F700A97A2B9D6015006B249F;
+					};
+					F77DEBD22C606C6D009CB94D = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = F77DEBBF2C606C6B009CB94D;
 					};
 				};
 			};
-			buildConfigurationList = F700A9762B9D6015006B249F /* Build configuration list for PBXProject "SwiftDataSugar" */;
-			compatibilityVersion = "Xcode 14.0";
+			buildConfigurationList = F77DEBBB2C606C6B009CB94D /* Build configuration list for PBXProject "SwiftDataTodoList" */;
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = F700A9722B9D6015006B249F;
+			mainGroup = F77DEBB72C606C6B009CB94D;
 			packageReferences = (
-				F7417C262C4357CE00C3C5FA /* XCRemoteSwiftPackageReference "Debouncify" */,
-				F7D834CA2C4E8F1D00C9C3E3 /* XCLocalSwiftPackageReference "SwiftDataSugar" */,
-				F77DEABC2C606268009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */,
+				F77DEC132C606D48009CB94D /* XCLocalSwiftPackageReference "../SwiftDataSugar" */,
+				F77DEC1A2C606DB1009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */,
+				F77DEC1D2C606DBD009CB94D /* XCRemoteSwiftPackageReference "Debouncify" */,
 			);
-			productRefGroup = F700A97C2B9D6015006B249F /* Products */;
+			productRefGroup = F77DEBC12C606C6B009CB94D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F700A97A2B9D6015006B249F /* SwiftDataTodoList */,
-				F7C064CC2C5B88FA00993562 /* MigrationTests */,
+				F77DEBBF2C606C6B009CB94D /* SwiftDataTodoList */,
+				F77DEBD22C606C6D009CB94D /* MigrationTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F700A9792B9D6015006B249F /* Resources */ = {
+		F77DEBBE2C606C6B009CB94D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7C064CB2C5B88FA00993562 /* Resources */ = {
+		F77DEBD12C606C6D009CB94D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F77DEC4E2C606EC9009CB94D /* MigrationTests.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F700A9772B9D6015006B249F /* Sources */ = {
+		F77DEBBC2C606C6B009CB94D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F7C064C92C5B88FA00993562 /* Sources */ = {
+		F77DEBCF2C606C6D009CB94D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -206,15 +214,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F7C064D22C5B88FA00993562 /* PBXTargetDependency */ = {
+		F77DEBD52C606C6D009CB94D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = F700A97A2B9D6015006B249F /* SwiftDataTodoList */;
-			targetProxy = F7C064D12C5B88FA00993562 /* PBXContainerItemProxy */;
+			target = F77DEBBF2C606C6B009CB94D /* SwiftDataTodoList */;
+			targetProxy = F77DEBD42C606C6D009CB94D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		F700A98A2B9D6016006B249F /* Debug */ = {
+		F77DEBE52C606C6D009CB94D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -272,13 +280,10 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_VERSION = 6.0;
-				_EXPERIMENTAL_SWIFT_EXPLICIT_MODULES = NO;
 			};
 			name = Debug;
 		};
-		F700A98B2B9D6016006B249F /* Release */ = {
+		F77DEBE62C606C6D009CB94D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -328,13 +333,10 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_VERSION = 6.0;
-				_EXPERIMENTAL_SWIFT_EXPLICIT_MODULES = NO;
 			};
 			name = Release;
 		};
-		F700A98D2B9D6016006B249F /* Debug */ = {
+		F77DEBE82C606C6D009CB94D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -357,7 +359,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -366,13 +368,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
-		F700A98E2B9D6016006B249F /* Release */ = {
+		F77DEBE92C606C6D009CB94D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -395,7 +398,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -404,13 +407,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
-		F7C064D42C5B88FA00993562 /* Debug */ = {
+		F77DEBEB2C606C6D009CB94D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -421,7 +425,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mesqueeb.MigrationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = mesqueeb.SwiftDataTodoListTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -433,7 +437,7 @@
 			};
 			name = Debug;
 		};
-		F7C064D52C5B88FA00993562 /* Release */ = {
+		F77DEBEC2C606C6D009CB94D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -444,7 +448,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = mesqueeb.MigrationTests;
+				PRODUCT_BUNDLE_IDENTIFIER = mesqueeb.SwiftDataTodoListTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -459,29 +463,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F700A9762B9D6015006B249F /* Build configuration list for PBXProject "SwiftDataSugar" */ = {
+		F77DEBBB2C606C6B009CB94D /* Build configuration list for PBXProject "SwiftDataTodoList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F700A98A2B9D6016006B249F /* Debug */,
-				F700A98B2B9D6016006B249F /* Release */,
+				F77DEBE52C606C6D009CB94D /* Debug */,
+				F77DEBE62C606C6D009CB94D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F700A98C2B9D6016006B249F /* Build configuration list for PBXNativeTarget "SwiftDataTodoList" */ = {
+		F77DEBE72C606C6D009CB94D /* Build configuration list for PBXNativeTarget "SwiftDataTodoList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F700A98D2B9D6016006B249F /* Debug */,
-				F700A98E2B9D6016006B249F /* Release */,
+				F77DEBE82C606C6D009CB94D /* Debug */,
+				F77DEBE92C606C6D009CB94D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F7C064D32C5B88FA00993562 /* Build configuration list for PBXNativeTarget "MigrationTests" */ = {
+		F77DEBEA2C606C6D009CB94D /* Build configuration list for PBXNativeTarget "MigrationTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F7C064D42C5B88FA00993562 /* Debug */,
-				F7C064D52C5B88FA00993562 /* Release */,
+				F77DEBEB2C606C6D009CB94D /* Debug */,
+				F77DEBEC2C606C6D009CB94D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -489,22 +493,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		F7D834CA2C4E8F1D00C9C3E3 /* XCLocalSwiftPackageReference "SwiftDataSugar" */ = {
+		F77DEC132C606D48009CB94D /* XCLocalSwiftPackageReference "../SwiftDataSugar" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftDataSugar;
+			relativePath = ../SwiftDataSugar;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F7417C262C4357CE00C3C5FA /* XCRemoteSwiftPackageReference "Debouncify" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mesqueeb/Debouncify.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
-		F77DEABC2C606268009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */ = {
+		F77DEC1A2C606DB1009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mesqueeb/MapSugar.git";
 			requirement = {
@@ -512,24 +508,32 @@
 				minimumVersion = 0.0.1;
 			};
 		};
+		F77DEC1D2C606DBD009CB94D /* XCRemoteSwiftPackageReference "Debouncify" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mesqueeb/Debouncify.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F7417C272C4357CE00C3C5FA /* Debouncify */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F7417C262C4357CE00C3C5FA /* XCRemoteSwiftPackageReference "Debouncify" */;
-			productName = Debouncify;
-		};
-		F77DEABD2C606268009CB94D /* MapSugar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F77DEABC2C606268009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */;
-			productName = MapSugar;
-		};
-		F7D834CB2C4E8F1D00C9C3E3 /* SwiftDataSugar */ = {
+		F77DEC142C606D48009CB94D /* SwiftDataSugar */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SwiftDataSugar;
 		};
+		F77DEC1B2C606DB1009CB94D /* MapSugar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F77DEC1A2C606DB1009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */;
+			productName = MapSugar;
+		};
+		F77DEC1E2C606DBD009CB94D /* Debouncify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F77DEC1D2C606DBD009CB94D /* XCRemoteSwiftPackageReference "Debouncify" */;
+			productName = Debouncify;
+		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = F700A9732B9D6015006B249F /* Project object */;
+	rootObject = F77DEBB82C606C6B009CB94D /* Project object */;
 }

@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "6AA89862-F0AA-4672-B0DC-0C8A2E438282",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:SwiftDataTodoList.xcodeproj",
+        "identifier" : "F77DEBD22C606C6D009CB94D",
+        "name" : "MigrationTests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -1,5 +1,5 @@
-import SwiftDataSugar
 import SwiftData
+import SwiftDataSugar
 import SwiftUI
 
 public typealias LatestSchema = Schema1_2_0
@@ -18,8 +18,10 @@ struct MainApp: App {
 
     WindowGroup(id: "item", for: UUID.self) { $uid in
       if let uid {
-        DbQuery(predicate: #Predicate<TodoItem> { $0.uid == uid }) { item in
-          TodoItemDetailsView(item: item)
+        DbQuery(predicate: #Predicate<TodoItem> { $0.uid == uid }) { items in
+          if let item = items.first {
+            TodoItemDetailsView(item: item)
+          }
         }
       } else {
         Text("ID not provided")

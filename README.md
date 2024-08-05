@@ -1,4 +1,22 @@
-# SwiftDataTodoList
+# SwiftDataSugar 🌯
+
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmesqueeb%2FSwiftDataSugar%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/mesqueeb/SwiftDataSugar)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmesqueeb%2FSwiftDataSugar%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/mesqueeb/SwiftDataSugar)
+
+```
+.package(url: "https://github.com/mesqueeb/SwiftDataSugar", from: "0.0.0")
+```
+
+A collection of utilities that make it easier to work with SwiftData in a SwiftUI environment.
+
+- `DbCollection` is an actor made for doing CRUD on SwiftData from a background thread (and avoids pitfalls that prevent UI reactivity)
+- `DbQuery` is a swiftUI view which uses `@Query` but makes it easier to use with dynamic predicate/sortby
+- `MigrationStep` is a protocol to keep your migration logic organised for migration testing purposes
+- `initModelContainer` wraps `ModelContainer` initialisation to more easily write migration unit tests
+
+The rendered documentation can be found here: [swiftpackageindex.com/mesqueeb/SwiftDataSugar/documentation](https://swiftpackageindex.com/mesqueeb/SwiftDataSugar/documentation)
+
+## Sample Project: SwiftDataTodoList
 
 A point of reference on how to implement CRUD via SwiftData on all Apple platforms.
 
@@ -9,7 +27,7 @@ Features of this proof of concept:
 3. Migration setup with unit testing
 4. Full Multi-platform support
 
-## 1. Writing data
+### 1. Writing data
 
 - Writing data to the SwiftData models is done on a background thread
 - An `actor` that conforms to `ModelActor` has been set up with CRUD-like methods to easily write data to the model
@@ -24,7 +42,7 @@ Features of this proof of concept:
 @MainActor public let dbUsers = DbCollection<User>(modelContainer: modelContainer)
 ```
 
-## 2. Reading data
+### 2. Reading data
 
 - Reading data from the SwiftData models is done on the MainActor thread
 - SwiftUI's `@Query` can be used for simple views that need to query data without dynamic requirements
@@ -32,12 +50,16 @@ Features of this proof of concept:
 - in this app the usage of `DbQuery` is showcased for a list that can be filtered and sorted dynamically
 
 ```swift
-DbQuery(predicate: activePredicate, sortBy: activeSort) { item in
-  TodoListItemView(item: item)
+DbQuery(predicate: activePredicate, sortBy: activeSort) { items in
+  ForEach(items, id: \.id) { item in
+    TodoListItemView(item: item)
+      .id(item.id) // Use ID for List reordering and animations
+    }
+  }
 }
 ```
 
-## 3. Migration setup with unit testing
+### 3. Migration setup with unit testing
 
 - Custom Migrations in SwiftData, which are hard to get right, are showcased in this app with 3 versions and 2 migrations
 - The latest schema has all of its structs and models type aliased for easier use throughout the codebase
@@ -47,6 +69,6 @@ DbQuery(predicate: activePredicate, sortBy: activeSort) { item in
 - Full unit testing in place of each migration phase (with modern Swift Testing) to give confidence a latest migration will not crash your user's apps on launch
 - The unit testing showcases exaclty _how_ to test migrations in SwiftData
 
-## 4. Multi-Platform Support
+### 4. Multi-Platform Support
 
 - All code used in this proof of concept is compatible with all Apple platforms

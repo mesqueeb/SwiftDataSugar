@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1530"
+   LastUpgradeVersion = "1600"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F700A97A2B9D6015006B249F"
+               BlueprintIdentifier = "F77DEBBF2C606C6B009CB94D"
                BuildableName = "SwiftDataTodoList.app"
                BlueprintName = "SwiftDataTodoList"
-               ReferencedContainer = "container:SwiftDataSugar.xcodeproj">
+               ReferencedContainer = "container:SwiftDataTodoList.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -39,10 +39,21 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F7C064CC2C5B88FA00993562"
+               BlueprintIdentifier = "F77DEBD22C606C6D009CB94D"
                BuildableName = "MigrationTests.xctest"
                BlueprintName = "MigrationTests"
-               ReferencedContainer = "container:SwiftDataSugar.xcodeproj">
+               ReferencedContainer = "container:SwiftDataTodoList.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F77DEBDC2C606C6D009CB94D"
+               BuildableName = "SwiftDataTodoListUITests.xctest"
+               BlueprintName = "SwiftDataTodoListUITests"
+               ReferencedContainer = "container:SwiftDataTodoList.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -61,18 +72,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F700A97A2B9D6015006B249F"
+            BlueprintIdentifier = "F77DEBBF2C606C6B009CB94D"
             BuildableName = "SwiftDataTodoList.app"
             BlueprintName = "SwiftDataTodoList"
-            ReferencedContainer = "container:SwiftDataSugar.xcodeproj">
+            ReferencedContainer = "container:SwiftDataTodoList.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-com.apple.CoreData.MigrationDebug 1"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -84,10 +89,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F700A97A2B9D6015006B249F"
+            BlueprintIdentifier = "F77DEBBF2C606C6B009CB94D"
             BuildableName = "SwiftDataTodoList.app"
             BlueprintName = "SwiftDataTodoList"
-            ReferencedContainer = "container:SwiftDataSugar.xcodeproj">
+            ReferencedContainer = "container:SwiftDataTodoList.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
