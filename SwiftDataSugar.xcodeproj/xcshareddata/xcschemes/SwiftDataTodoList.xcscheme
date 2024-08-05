@@ -18,7 +18,7 @@
                BlueprintIdentifier = "F700A97A2B9D6015006B249F"
                BuildableName = "SwiftDataTodoList.app"
                BlueprintName = "SwiftDataTodoList"
-               ReferencedContainer = "container:SwiftDataTodoList.xcodeproj">
+               ReferencedContainer = "container:SwiftDataSugar.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,18 +27,22 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:MigrationTests.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F7C064CC2C5B88FA00993562"
                BuildableName = "MigrationTests.xctest"
                BlueprintName = "MigrationTests"
-               ReferencedContainer = "container:SwiftDataTodoList.xcodeproj">
+               ReferencedContainer = "container:SwiftDataSugar.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -60,7 +64,7 @@
             BlueprintIdentifier = "F700A97A2B9D6015006B249F"
             BuildableName = "SwiftDataTodoList.app"
             BlueprintName = "SwiftDataTodoList"
-            ReferencedContainer = "container:SwiftDataTodoList.xcodeproj">
+            ReferencedContainer = "container:SwiftDataSugar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <CommandLineArguments>
@@ -83,7 +87,7 @@
             BlueprintIdentifier = "F700A97A2B9D6015006B249F"
             BuildableName = "SwiftDataTodoList.app"
             BlueprintName = "SwiftDataTodoList"
-            ReferencedContainer = "container:SwiftDataTodoList.xcodeproj">
+            ReferencedContainer = "container:SwiftDataSugar.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,4 +1,4 @@
-import DatabaseKit
+import SwiftDataSugar
 import Foundation
 import MapSugar // for .mapKeys
 import SwiftData

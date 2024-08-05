@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F7417C282C4357CE00C3C5FA /* Debouncify in Frameworks */ = {isa = PBXBuildFile; productRef = F7417C272C4357CE00C3C5FA /* Debouncify */; };
 		F77DEABE2C606268009CB94D /* MapSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F77DEABD2C606268009CB94D /* MapSugar */; };
-		F7D834CC2C4E8F1D00C9C3E3 /* DatabaseKit in Frameworks */ = {isa = PBXBuildFile; productRef = F7D834CB2C4E8F1D00C9C3E3 /* DatabaseKit */; };
+		F7D834CC2C4E8F1D00C9C3E3 /* SwiftDataSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F7D834CB2C4E8F1D00C9C3E3 /* SwiftDataSugar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,8 +24,10 @@
 
 /* Begin PBXFileReference section */
 		F700A97B2B9D6015006B249F /* SwiftDataTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataTodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F77DEAE82C606572009CB94D /* MigrationTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MigrationTests.xctestplan; sourceTree = "<group>"; };
+		F77DEB3B2C606672009CB94D /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		F7C064CD2C5B88FA00993562 /* MigrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MigrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F7D834C62C4E8D8400C9C3E3 /* DatabaseKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = DatabaseKit; sourceTree = "<group>"; };
+		F7D834C62C4E8D8400C9C3E3 /* SwiftDataSugar */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SwiftDataSugar; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -38,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7D834CC2C4E8F1D00C9C3E3 /* DatabaseKit in Frameworks */,
+				F7D834CC2C4E8F1D00C9C3E3 /* SwiftDataSugar in Frameworks */,
 				F7417C282C4357CE00C3C5FA /* Debouncify in Frameworks */,
 				F77DEABE2C606268009CB94D /* MapSugar in Frameworks */,
 			);
@@ -57,10 +59,12 @@
 		F700A9722B9D6015006B249F = {
 			isa = PBXGroup;
 			children = (
-				F7D834C62C4E8D8400C9C3E3 /* DatabaseKit */,
+				F77DEAE82C606572009CB94D /* MigrationTests.xctestplan */,
+				F7D834C62C4E8D8400C9C3E3 /* SwiftDataSugar */,
 				F725D7662C5B4B4C0048623D /* SwiftDataTodoList */,
 				F7C064CE2C5B88FA00993562 /* MigrationTests */,
 				F700A97C2B9D6015006B249F /* Products */,
+				F77DEB3B2C606672009CB94D /* Package.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,7 +98,7 @@
 			name = SwiftDataTodoList;
 			packageProductDependencies = (
 				F7417C272C4357CE00C3C5FA /* Debouncify */,
-				F7D834CB2C4E8F1D00C9C3E3 /* DatabaseKit */,
+				F7D834CB2C4E8F1D00C9C3E3 /* SwiftDataSugar */,
 				F77DEABD2C606268009CB94D /* MapSugar */,
 			);
 			productName = SwiftDataTodoList;
@@ -143,7 +147,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F700A9762B9D6015006B249F /* Build configuration list for PBXProject "SwiftDataTodoList" */;
+			buildConfigurationList = F700A9762B9D6015006B249F /* Build configuration list for PBXProject "SwiftDataSugar" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -154,7 +158,7 @@
 			mainGroup = F700A9722B9D6015006B249F;
 			packageReferences = (
 				F7417C262C4357CE00C3C5FA /* XCRemoteSwiftPackageReference "Debouncify" */,
-				F7D834CA2C4E8F1D00C9C3E3 /* XCLocalSwiftPackageReference "DatabaseKit" */,
+				F7D834CA2C4E8F1D00C9C3E3 /* XCLocalSwiftPackageReference "SwiftDataSugar" */,
 				F77DEABC2C606268009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */,
 			);
 			productRefGroup = F700A97C2B9D6015006B249F /* Products */;
@@ -455,7 +459,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F700A9762B9D6015006B249F /* Build configuration list for PBXProject "SwiftDataTodoList" */ = {
+		F700A9762B9D6015006B249F /* Build configuration list for PBXProject "SwiftDataSugar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F700A98A2B9D6016006B249F /* Debug */,
@@ -485,9 +489,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		F7D834CA2C4E8F1D00C9C3E3 /* XCLocalSwiftPackageReference "DatabaseKit" */ = {
+		F7D834CA2C4E8F1D00C9C3E3 /* XCLocalSwiftPackageReference "SwiftDataSugar" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = DatabaseKit;
+			relativePath = SwiftDataSugar;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -521,9 +525,9 @@
 			package = F77DEABC2C606268009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */;
 			productName = MapSugar;
 		};
-		F7D834CB2C4E8F1D00C9C3E3 /* DatabaseKit */ = {
+		F7D834CB2C4E8F1D00C9C3E3 /* SwiftDataSugar */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = DatabaseKit;
+			productName = SwiftDataSugar;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -1,4 +1,4 @@
-import DatabaseKit
+import SwiftDataSugar
 import SwiftData
 import SwiftUI
 
