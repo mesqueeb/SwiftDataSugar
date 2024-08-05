@@ -1,27 +1,16 @@
-import SwiftDataSugar
 import Foundation
 import SwiftData
+import SwiftDataSugar
 @testable import SwiftDataTodoList
 import Testing
+
+// TODO: Migrations via inMemory store...
+// I’m not sure if you can migrate in memory DB, as they’re deleted when closed and you need to close and reopen to migrate afaik.
 
 final class MigrationTests {
   var url: URL!
   var container: ModelContainer!
   var context: ModelContext!
-
-  // TODO: I’m not sure if you can migrate in memory DB, as they’re deleted when closed and you need to close and reopen to migrate afaik.
-  func initModelContainer<VS: VersionedSchema & MockableSchema>(
-    for schema: VS.Type,
-    with migrationPlan: (any SchemaMigrationPlan.Type)?
-  ) -> ModelContainer {
-    let schema = SwiftData.Schema(versionedSchema: schema)
-    let config = ModelConfiguration(schema: schema, url: url)
-    return try! SwiftData.ModelContainer(
-      for: schema,
-      migrationPlan: migrationPlan,
-      configurations: [config]
-    )
-  }
 
   init() {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -47,7 +36,7 @@ final class MigrationTests {
       static var stages: [MigrationStage] { [MigrateTo1_1_0.stage] }
     }
 
-    container = initModelContainer(for: Schema1_0_0.self, with: nil)
+    container = initModelContainer(for: Schema1_0_0.self, with: nil, storeUrl: url)
     context = ModelContext(container)
 
     Schema1_0_0.insertMocks(context: context)
@@ -59,7 +48,7 @@ final class MigrationTests {
     // Perform the migration by reinitialising the model container!
     // ============================================================
 
-    container = initModelContainer(for: Schema1_1_0.self, with: RelevantMigrationPlan.self)
+    container = initModelContainer(for: Schema1_1_0.self, with: RelevantMigrationPlan.self, storeUrl: url)
     context = ModelContext(container)
 
     let newRecords = try context.fetch(FetchDescriptor<Schema1_1_0.TodoItem>())
@@ -73,7 +62,7 @@ final class MigrationTests {
       static var stages: [MigrationStage] { [MigrateTo1_2_0.stage] }
     }
 
-    container = initModelContainer(for: Schema1_1_0.self, with: nil)
+    container = initModelContainer(for: Schema1_1_0.self, with: nil, storeUrl: url)
     context = ModelContext(container)
 
     Schema1_1_0.insertMocks(context: context)
@@ -85,7 +74,7 @@ final class MigrationTests {
     // Perform the migration by reinitialising the model container!
     // ============================================================
 
-    container = initModelContainer(for: Schema1_2_0.self, with: RelevantMigrationPlan.self)
+    container = initModelContainer(for: Schema1_2_0.self, with: RelevantMigrationPlan.self, storeUrl: url)
     context = ModelContext(container)
 
     let newRecords = try context.fetch(FetchDescriptor<Schema1_2_0.TodoItem>())

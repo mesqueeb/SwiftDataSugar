@@ -1,3 +1,4 @@
+import Foundation
 import SwiftData
 
 /// Use like this:
@@ -11,10 +12,17 @@ import SwiftData
 public func initModelContainer(
   for schema: VersionedSchema.Type,
   with migrationPlan: (any SchemaMigrationPlan.Type)?,
-  inMemory: Bool
+  inMemory: Bool = false,
+  storeUrl: URL? = nil
 ) -> ModelContainer {
   let schema = SwiftData.Schema(versionedSchema: schema)
-  let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: inMemory)
+  let config = if inMemory {
+    ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+  } else if let storeUrl {
+    ModelConfiguration(schema: schema, url: storeUrl)
+  } else {
+    ModelConfiguration(schema: schema)
+  }
   do {
     if inMemory {
       return try SwiftData.ModelContainer(
