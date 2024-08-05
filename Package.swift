@@ -22,8 +22,9 @@ let package = Package(
       swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
     ),
     .testTarget(
-      name: "SwiftDataSugar/Tests",
-      dependencies: ["SwiftDataSugar"]
+      name: "SwiftDataSugarTests",
+      dependencies: ["SwiftDataSugar"],
+      path: "SwiftDataSugar/Tests"
     ),
   ]
 )
