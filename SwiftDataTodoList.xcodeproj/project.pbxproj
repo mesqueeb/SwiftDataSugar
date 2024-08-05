@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F7417C282C4357CE00C3C5FA /* Debouncify in Frameworks */ = {isa = PBXBuildFile; productRef = F7417C272C4357CE00C3C5FA /* Debouncify */; };
+		F77DEABE2C606268009CB94D /* MapSugar in Frameworks */ = {isa = PBXBuildFile; productRef = F77DEABD2C606268009CB94D /* MapSugar */; };
 		F7D834CC2C4E8F1D00C9C3E3 /* DatabaseKit in Frameworks */ = {isa = PBXBuildFile; productRef = F7D834CB2C4E8F1D00C9C3E3 /* DatabaseKit */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 			files = (
 				F7D834CC2C4E8F1D00C9C3E3 /* DatabaseKit in Frameworks */,
 				F7417C282C4357CE00C3C5FA /* Debouncify in Frameworks */,
+				F77DEABE2C606268009CB94D /* MapSugar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +95,7 @@
 			packageProductDependencies = (
 				F7417C272C4357CE00C3C5FA /* Debouncify */,
 				F7D834CB2C4E8F1D00C9C3E3 /* DatabaseKit */,
+				F77DEABD2C606268009CB94D /* MapSugar */,
 			);
 			productName = SwiftDataTodoList;
 			productReference = F700A97B2B9D6015006B249F /* SwiftDataTodoList.app */;
@@ -152,6 +155,7 @@
 			packageReferences = (
 				F7417C262C4357CE00C3C5FA /* XCRemoteSwiftPackageReference "Debouncify" */,
 				F7D834CA2C4E8F1D00C9C3E3 /* XCLocalSwiftPackageReference "DatabaseKit" */,
+				F77DEABC2C606268009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */,
 			);
 			productRefGroup = F700A97C2B9D6015006B249F /* Products */;
 			projectDirPath = "";
@@ -496,6 +500,14 @@
 				minimumVersion = 0.1.0;
 			};
 		};
+		F77DEABC2C606268009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mesqueeb/MapSugar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -503,6 +515,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F7417C262C4357CE00C3C5FA /* XCRemoteSwiftPackageReference "Debouncify" */;
 			productName = Debouncify;
+		};
+		F77DEABD2C606268009CB94D /* MapSugar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F77DEABC2C606268009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */;
+			productName = MapSugar;
 		};
 		F7D834CB2C4E8F1D00C9C3E3 /* DatabaseKit */ = {
 			isa = XCSwiftPackageProductDependency;

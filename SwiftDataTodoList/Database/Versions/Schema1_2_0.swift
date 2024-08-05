@@ -1,16 +1,8 @@
 import DatabaseKit
 import Foundation
+import MapSugar // for .mapKeys
 import SwiftData
 import SwiftUI
-
-public extension Dictionary {
-  func mapKeys<K: Hashable>(_ transform: (Key) -> K) -> [K: Value] {
-    return self.reduce(into: [K: Value]()) { result, pair in
-      let (key, value) = pair
-      result[transform(key)] = value
-    }
-  }
-}
 
 /// In this schema we introduce a new Codable implementation for EditHistory
 /// and added a new "version" (`v`) prop to `TodoItem`
