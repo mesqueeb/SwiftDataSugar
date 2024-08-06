@@ -4,7 +4,7 @@
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fmesqueeb%2FSwiftDataSugar%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/mesqueeb/SwiftDataSugar)
 
 ```
-.package(url: "https://github.com/mesqueeb/SwiftDataSugar", from: "0.0.3")
+.package(url: "https://github.com/mesqueeb/SwiftDataSugar", from: "0.0.4")
 ```
 
 A collection of utilities that make it easier to work with SwiftData in a SwiftUI environment.
