@@ -1,8 +1,8 @@
 import Foundation
 import SwiftData
 
-extension MigrationStage: @unchecked @retroactive Sendable {}
-extension Schema.Version: @unchecked @retroactive Sendable {}
+extension MigrationStage: @unchecked Sendable {}
+extension Schema.Version: @unchecked Sendable {}
 
 /// A MockableSchema forces you to add a `insertMocks` method to your schema in which you add a mocked record to a given context.actor
 /// This method can be used during migration testing.
