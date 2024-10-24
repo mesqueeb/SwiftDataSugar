@@ -8,8 +8,7 @@ let sortOptions: [Option<[SortDescriptor<TodoItem>]>] = [
   (label: "Z-A", value: [SortDescriptor<TodoItem>(\.summary, order: .reverse)]),
 ]
 let filterOptions: [Option<Bool>] = [
-  (label: "Show All", value: true),
-  (label: "Hide Checked Items", value: false),
+  (label: "Show All", value: true), (label: "Hide Checked Items", value: false),
 ]
 
 public struct TodoListView: View {
@@ -19,17 +18,21 @@ public struct TodoListView: View {
   @State private var searchText: String = ""
   @State private var showChecked: Bool = true
 
-  var activePredicate: Predicate<TodoItem>? { TodoItem.query(searchText: searchText, showChecked: showChecked) }
+  var activePredicate: Predicate<TodoItem>? {
+    TodoItem.query(searchText: searchText, showChecked: showChecked)
+  }
 
   @State private var newItemSummary: String = ""
 
   private func addItem() {
     if newItemSummary.isEmpty { return }
     let data = TodoItemSnapshot(summary: newItemSummary)
-    _ = withAnimation { Task {
-      try await dbTodos.insert(data)
-      newItemSummary = ""
-    } }
+    _ = withAnimation {
+      Task {
+        try await dbTodos.insert(data)
+        newItemSummary = ""
+      }
+    }
   }
 
   public var body: some View {
@@ -39,9 +42,7 @@ public struct TodoListView: View {
           LazyVStack {
             Spacer(minLength: 8)
             DbQuery(predicate: activePredicate, sortBy: activeSort) { items in
-              ForEach(items, id: \.id) { item in
-                TodoListItemView(item: item)
-                  .id(item.id) // Use ID for List reordering and animations
+              ForEach(items, id: \.id) { item in TodoListItemView(item: item).id(item.id)  // Use ID for List reordering and animations
               }
             }
             Spacer(minLength: 8)
@@ -51,9 +52,7 @@ public struct TodoListView: View {
           CInput(modelValue: $newItemSummary, placeholder: "New Item", onSubmit: addItem)
             .textFieldStyle(RoundedBorderTextFieldStyle())
 
-          CButton(action: addItem) {
-            Image(systemName: "plus")
-          }
+          CButton(action: addItem) { Image(systemName: "plus") }
         }
         .padding()
       }
@@ -66,16 +65,11 @@ public struct TodoListView: View {
             activeFilter: $showChecked
           )
         }
-        ToolbarItem {
-          MenuCrashTests()
-        }
+        ToolbarItem { MenuCrashTests() }
       }
     }
     .searchable(text: $searchText)
   }
 }
 
-#Preview {
-  TodoListView()
-    .modelContainer(for: TodoItem.self, inMemory: true)
-}
+#Preview { TodoListView().modelContainer(for: TodoItem.self, inMemory: true) }

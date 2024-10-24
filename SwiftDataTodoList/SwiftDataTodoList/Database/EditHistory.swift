@@ -5,20 +5,16 @@ import SwiftData
 public typealias EditHistory = LatestSchema.EditHistory
 public typealias HistoryEntry = LatestSchema.HistoryEntry
 
-public extension EditHistory {
-  init() {
-    self.history = [:]
-  }
+extension EditHistory {
+  public init() { self.history = [:] }
 
-  mutating func addEntry(from: TodoItem) {
+  public mutating func addEntry(from: TodoItem) {
     let entry = HistoryEntry(from: from)
     let date = from.dateUpdated
     history[date] = entry
   }
 }
 
-public extension HistoryEntry {
-  init(from: TodoItem) {
-    self.init(summary: from.summary, isChecked: from.isChecked)
-  }
+extension HistoryEntry {
+  public init(from: TodoItem) { self.init(summary: from.summary, isChecked: from.isChecked) }
 }

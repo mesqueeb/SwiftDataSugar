@@ -5,8 +5,8 @@ import SwiftData
 public typealias TodoItem = LatestSchema.TodoItem
 let currentVersion: String = LatestSchema.versionIdentifier.description
 
-public extension TodoItem {
-  convenience init(summary: String) {
+extension TodoItem {
+  public convenience init(summary: String) {
     self.init(
       uid: UUID(),
       dateCreated: Date(),
@@ -19,20 +19,15 @@ public extension TodoItem {
   }
 
   /// QUERY
-  static func query(searchText: String = "", showChecked: Bool = true) -> Predicate<TodoItem>? {
+  public static func query(
+    searchText: String = "",
+    showChecked: Bool = true
+  ) -> Predicate<TodoItem>? {
     let q = searchText.lowercased()
-    if q.isEmpty, showChecked {
-      return nil
-    }
-    if q.isEmpty, !showChecked {
-      return #Predicate<TodoItem> { item in
-        item.isChecked == false
-      }
-    }
+    if q.isEmpty, showChecked { return nil }
+    if q.isEmpty, !showChecked { return #Predicate<TodoItem> { item in item.isChecked == false } }
     if !q.isEmpty, showChecked {
-      return #Predicate<TodoItem> { item in
-        item.summary.localizedStandardContains(q)
-      }
+      return #Predicate<TodoItem> { item in item.summary.localizedStandardContains(q) }
     }
     if !q.isEmpty, !showChecked {
       return #Predicate<TodoItem> { item in

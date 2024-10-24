@@ -11,5 +11,7 @@ public func printMemoryAddress(_ description: String, _ ctx: ModelContext?) {
 }
 
 public func printGCDThread(_ description: String = "") {
-  print("\(description) Thread: \(String(validatingUTF8: __dispatch_queue_get_label(nil)) ?? "unknown")")
+  print(
+    "\(description) Thread: \(String(validatingUTF8: __dispatch_queue_get_label(nil)) ?? "unknown")"
+  )
 }

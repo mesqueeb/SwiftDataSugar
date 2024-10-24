@@ -17,9 +17,7 @@ public struct TodoListItemView: View {
     Binding<String>(
       get: { item.summary },
       set: { newValue in
-        Task.detached { try await dbTodos.update(id: id) { data in
-          data.summary = newValue
-        } }
+        Task.detached { try await dbTodos.update(id: id) { data in data.summary = newValue } }
       }
     )
   }
@@ -40,9 +38,7 @@ public struct TodoListItemView: View {
   @State private var isDeleting = false
   private func deleteItem(_ item: TodoItem) {
     isDeleting = true
-    _ = withAnimation {
-      Task { try await dbTodos.delete(id: id) }
-    }
+    _ = withAnimation { Task { try await dbTodos.delete(id: id) } }
   }
 
   private func finishEditing() {
@@ -59,35 +55,32 @@ public struct TodoListItemView: View {
     HStack {
       CButton(action: { toggleChecked(item) }) {
         Image(systemName: item.isChecked ? "checkmark.square" : "square")
-      }.disabled(isDeleting)
+      }
+      .disabled(isDeleting)
 
       if isEditing {
-        CInput(modelValue: editingSummary, placeholder: "...", revertOnExit: true, autoFocus: true, onBlur: finishEditing)
-          .onSubmit(finishEditing)
-          .padding(CGFloat(4))
-          .frame(maxWidth: .infinity, alignment: .leading) // Make text take up as much space as possible
-          .disabled(isDeleting)
+        CInput(
+          modelValue: editingSummary,
+          placeholder: "...",
+          revertOnExit: true,
+          autoFocus: true,
+          onBlur: finishEditing
+        )
+        .onSubmit(finishEditing).padding(CGFloat(4))
+        .frame(maxWidth: .infinity, alignment: .leading)  // Make text take up as much space as possible
+        .disabled(isDeleting)
       } else {
-        Text(item.summary)
-          .strikethrough(item.isChecked, color: .gray)
-          .padding(CGFloat(4))
-          .frame(maxWidth: .infinity, alignment: .leading) // Make text take up as much space as possible
+        Text(item.summary).strikethrough(item.isChecked, color: .gray).padding(CGFloat(4))
+          .frame(maxWidth: .infinity, alignment: .leading)  // Make text take up as much space as possible
           .contentShape(Rectangle())
           .gesture(
-            TapGesture(count: 2).onEnded {
-              openWindow(id: "item", value: item.uid)
-            }.exclusively(before: TapGesture(count: 1).onEnded {
-              isEditing = true
-            })
+            TapGesture(count: 2).onEnded { openWindow(id: "item", value: item.uid) }
+              .exclusively(before: TapGesture(count: 1).onEnded { isEditing = true })
           )
 
-        CButton(action: { isEditing = true }) {
-          Image(systemName: "pencil")
-        }.disabled(isDeleting)
+        CButton(action: { isEditing = true }) { Image(systemName: "pencil") }.disabled(isDeleting)
       }
-      CButton(action: { deleteItem(item) }) {
-        Image(systemName: "trash")
-      }.disabled(isDeleting)
+      CButton(action: { deleteItem(item) }) { Image(systemName: "trash") }.disabled(isDeleting)
     }
     .padding(.horizontal, 16)
   }

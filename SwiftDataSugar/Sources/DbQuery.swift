@@ -1,7 +1,8 @@
 import SwiftData
 import SwiftUI
 
-public struct DbQuery<T, Content: View>: View where T: PersistentModel & CollectionDocument & SendableDocument {
+public struct DbQuery<T, Content: View>: View
+where T: PersistentModel & CollectionDocument & SendableDocument {
   @Query private var items: [T]
 
   let content: (_ items: [T]) -> Content
@@ -10,7 +11,7 @@ public struct DbQuery<T, Content: View>: View where T: PersistentModel & Collect
     predicate: Predicate<T>? = nil,
     sortBy: [SortDescriptor<T>] = [],
     fetchLimit: Int? = nil,
-    @ViewBuilder content: @escaping (_ items: [T]) -> Content // Slot Content
+    @ViewBuilder content: @escaping (_ items: [T]) -> Content  // Slot Content
   ) {
     var descriptor = FetchDescriptor<T>(predicate: predicate, sortBy: sortBy)
     if let fetchLimit { descriptor.fetchLimit = fetchLimit }
@@ -19,7 +20,5 @@ public struct DbQuery<T, Content: View>: View where T: PersistentModel & Collect
     self.content = content
   }
 
-  public var body: some View {
-    content(items)
-  }
+  public var body: some View { content(items) }
 }

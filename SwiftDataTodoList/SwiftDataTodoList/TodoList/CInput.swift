@@ -51,18 +51,16 @@ public struct CInput: View {
   @FocusState private var hasFocus: Bool
 
   public var body: some View {
-    TextField(placeholder, text: $innerValue)
-      /// Watch modelValue updates
-      .onChange(of: modelValue) { _, newValue in
-        self.innerValue = newValue
-      }
+    TextField(placeholder, text: $innerValue)/// Watch modelValue updates
+      .onChange(of: modelValue) { _, newValue in self.innerValue = newValue }
       /// Watch innerValue updates with debounce
-      .onChangeDebounced(of: innerValue, after: .milliseconds(debounceMs), task: $updatingModelValueTask) { _, newValue in
-        self.modelValue = newValue
-      }
+      .onChangeDebounced(
+        of: innerValue,
+        after: .milliseconds(debounceMs),
+        task: $updatingModelValueTask
+      ) { _, newValue in self.modelValue = newValue }
       /// Handle auto focus & onBlur
-      .focused($hasFocus)
-      .onChange(of: hasFocus) { _, focussed in if !focussed { self.onBlur?() } }
+      .focused($hasFocus).onChange(of: hasFocus) { _, focussed in if !focussed { self.onBlur?() } }
       .onAppear {
         if self.initialValue == nil { self.initialValue = self.modelValue }
         if self.autoFocus { self.hasFocus = true }
@@ -72,16 +70,16 @@ public struct CInput: View {
         self.modelValue = self.innerValue
         self.onSubmit?()
       }
-    #if os(macOS)
-      /// Handle revertOnExit
-      .onExitCommand {
-        self.updatingModelValueTask?.cancel()
-        if self.revertOnExit, let initialValue = self.initialValue {
-          self.modelValue = initialValue
+      #if os(macOS)
+        /// Handle revertOnExit
+        .onExitCommand {
+          self.updatingModelValueTask?.cancel()
+          if self.revertOnExit, let initialValue = self.initialValue {
+            self.modelValue = initialValue
+          }
+          self.hasFocus = false
         }
-        self.hasFocus = false
-      }
-    #endif
+      #endif
   }
 }
 
@@ -111,14 +109,17 @@ public struct CInputPreview: View {
   public var body: some View {
     VStack {
       Text(self.text).font(.title)
-      TextField("Focus me", text: self.textInTextField)
-        .padding()
-      CInput(modelValue: self.textInCInput, placeholder: "Type in me", autoFocus: true, onBlur: { print("Input field lost focus") })
-        .padding()
-    }.onChange(of: text) { _, newValue in print("newValue →", newValue) }
+      TextField("Focus me", text: self.textInTextField).padding()
+      CInput(
+        modelValue: self.textInCInput,
+        placeholder: "Type in me",
+        autoFocus: true,
+        onBlur: { print("Input field lost focus") }
+      )
+      .padding()
+    }
+    .onChange(of: text) { _, newValue in print("newValue →", newValue) }
   }
 }
 
-#Preview {
-  CInputPreview()
-}
+#Preview { CInputPreview() }

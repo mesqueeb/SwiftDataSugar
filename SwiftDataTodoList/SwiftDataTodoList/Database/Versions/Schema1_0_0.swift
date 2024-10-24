@@ -6,9 +6,7 @@ import SwiftUI
 public enum Schema1_0_0: VersionedSchema, MockableSchema {
   public static let versionIdentifier = Schema.Version(1, 0, 0)
 
-  public static var models: [any PersistentModel.Type] {
-    [Schema1_0_0.TodoItem.self]
-  }
+  public static var models: [any PersistentModel.Type] { [Schema1_0_0.TodoItem.self] }
 
   @Model public final class TodoItem: CollectionDocument, Codable {
     /// If you plan to reuse the data with other databases in the future, you might consider adding a uid.
@@ -21,7 +19,6 @@ public enum Schema1_0_0: VersionedSchema, MockableSchema {
     public var dateChecked: Date?
     public var summary: String
     public var isChecked: Bool
-    
     public init(
       uid: UUID,
       dateCreated: Date,
@@ -37,15 +34,13 @@ public enum Schema1_0_0: VersionedSchema, MockableSchema {
       self.summary = summary
       self.isChecked = isChecked
     }
-    
     // ╔═════════╗
     // ║ CODABLE ║
     // ╚═════════╝
-    
+
     enum CodingKeys: String, CodingKey {
       case uid, dateCreated, dateUpdated, dateChecked, summary, isChecked
     }
-    
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.uid, forKey: .uid)
@@ -55,7 +50,6 @@ public enum Schema1_0_0: VersionedSchema, MockableSchema {
       try container.encode(self.summary, forKey: .summary)
       try container.encode(self.isChecked, forKey: .isChecked)
     }
-    
     public required init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.uid = try container.decode(UUID.self, forKey: .uid)
@@ -66,7 +60,6 @@ public enum Schema1_0_0: VersionedSchema, MockableSchema {
       self.isChecked = try container.decode(Bool.self, forKey: .isChecked)
     }
   }
-  
   public static func insertMocks(context: ModelContext) {
     let mock = Schema1_0_0.TodoItem(
       uid: UUID(),

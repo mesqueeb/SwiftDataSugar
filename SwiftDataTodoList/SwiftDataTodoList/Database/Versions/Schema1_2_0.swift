@@ -1,6 +1,6 @@
 import SwiftDataSugar
 import Foundation
-import MapSugar // for .mapKeys
+import MapSugar  // for .mapKeys
 import SwiftData
 import SwiftUI
 
@@ -9,9 +9,7 @@ import SwiftUI
 public enum Schema1_2_0: VersionedSchema, MockableSchema {
   public static let versionIdentifier = Schema.Version(1, 2, 0)
 
-  public static var models: [any PersistentModel.Type] {
-    [Schema1_2_0.TodoItem.self]
-  }
+  public static var models: [any PersistentModel.Type] { [Schema1_2_0.TodoItem.self] }
 
   public struct HistoryEntry: Sendable, Codable {
     let summary: String
@@ -21,17 +19,13 @@ public enum Schema1_2_0: VersionedSchema, MockableSchema {
   public struct EditHistory: Sendable, Codable {
     var history: [Date: HistoryEntry]
 
-    public init(history: [Date: HistoryEntry]) {
-      self.history = history
-    }
+    public init(history: [Date: HistoryEntry]) { self.history = history }
 
     // ╔═════════╗
     // ║ CODABLE ║
     // ╚═════════╝
 
-    enum CodingKeys: String, CodingKey {
-      case history, lastAccess
-    }
+    enum CodingKeys: String, CodingKey { case history, lastAccess }
 
     public func encode(to encoder: Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
@@ -142,9 +136,7 @@ enum MigrateTo1_2_0: MigrationStep {
     willMigrate: { modelContext in
       let oldSaves = try modelContext.fetch(FetchDescriptor<Schema1_1_0.TodoItem>())
       MigrateTo1_2_0.retainer.append(contentsOf: oldSaves)
-      for oldSave in oldSaves {
-        modelContext.delete(oldSave)
-      }
+      for oldSave in oldSaves { modelContext.delete(oldSave) }
       try modelContext.save()
     },
     didMigrate: { modelContext in

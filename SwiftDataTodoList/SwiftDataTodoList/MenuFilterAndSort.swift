@@ -30,8 +30,10 @@ public struct MenuFilterAndSort: View {
       Picker("Filter", selection: $activeFilter) {
         ForEach(filterOptions, id: \.label) { option in Text(option.label).tag(option.value) }
       }
-    } label: { Label("Sort", systemImage: "arrow.up.arrow.down") }
-      .pickerStyle(.inline)
+    } label: {
+      Label("Sort", systemImage: "arrow.up.arrow.down")
+    }
+    .pickerStyle(.inline)  // swift-format-ignore
     #if os(visionOS)
       .glassBackgroundEffect()
     #endif

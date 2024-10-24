@@ -22,9 +22,7 @@ extension Schema.Version: @unchecked Sendable {}
 ///   }
 /// }
 /// ```
-public protocol MockableSchema {
-  static func insertMocks(context: ModelContext)
-}
+public protocol MockableSchema { static func insertMocks(context: ModelContext) }
 
 /// A single step of migration, a protocol to be implemented to help with defining migrations.
 /// Actual use of each step can be as simple as:

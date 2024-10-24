@@ -8,10 +8,7 @@ let package = Package(
   platforms: [.macOS(.v14), .iOS(.v17), .visionOS(.v1)],
   products: [
     // Products define the executables and libraries a package produces, making them visible to other packages.
-    .library(
-      name: "SwiftDataSugar",
-      targets: ["SwiftDataSugar"]
-    ),
+    .library(name: "SwiftDataSugar", targets: ["SwiftDataSugar"])
   ],
   targets: [
     // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -20,11 +17,6 @@ let package = Package(
       name: "SwiftDataSugar",
       path: "Sources",
       swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
-    ),
-    .testTarget(
-      name: "SwiftDataSugarTests",
-      dependencies: ["SwiftDataSugar"],
-      path: "Tests"
-    ),
+    ), .testTarget(name: "SwiftDataSugarTests", dependencies: ["SwiftDataSugar"], path: "Tests"),
   ]
 )

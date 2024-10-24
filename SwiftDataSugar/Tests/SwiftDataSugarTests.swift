@@ -1,4 +1,5 @@
 import Testing
+
 @testable import SwiftDataSugar
 
 @Test func example() async throws {

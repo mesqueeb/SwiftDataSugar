@@ -16,20 +16,14 @@ public func initModelContainer(
   storeUrl: URL? = nil
 ) -> ModelContainer {
   let schema = SwiftData.Schema(versionedSchema: schema)
-  let config = if inMemory {
-    ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
-  } else if let storeUrl {
-    ModelConfiguration(schema: schema, url: storeUrl)
-  } else {
-    ModelConfiguration(schema: schema)
-  }
-  do {
+  let config =
     if inMemory {
-      return try SwiftData.ModelContainer(
-        for: schema,
-        configurations: [config]
-      )
+      ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+    } else if let storeUrl { ModelConfiguration(schema: schema, url: storeUrl) } else {
+      ModelConfiguration(schema: schema)
     }
+  do {
+    if inMemory { return try SwiftData.ModelContainer(for: schema, configurations: [config]) }
     return try SwiftData.ModelContainer(
       for: schema,
       migrationPlan: migrationPlan,

@@ -7,9 +7,7 @@ import SwiftUI
 public enum Schema1_1_0: VersionedSchema, MockableSchema {
   public static let versionIdentifier = Schema.Version(1, 1, 0)
 
-  public static var models: [any PersistentModel.Type] {
-    [Schema1_1_0.TodoItem.self]
-  }
+  public static var models: [any PersistentModel.Type] { [Schema1_1_0.TodoItem.self] }
 
   public struct HistoryEntry: Sendable, Codable {
     let summary: String
@@ -19,9 +17,7 @@ public enum Schema1_1_0: VersionedSchema, MockableSchema {
   public struct EditHistory: Sendable, Codable {
     var history: [Date: HistoryEntry]
 
-    public init(history: [Date: HistoryEntry]) {
-      self.history = history
-    }
+    public init(history: [Date: HistoryEntry]) { self.history = history }
   }
 
   @Model public final class TodoItem: CollectionDocument, Codable {
@@ -113,9 +109,7 @@ enum MigrateTo1_1_0: MigrationStep {
     willMigrate: { modelContext in
       let oldSaves = try modelContext.fetch(FetchDescriptor<Schema1_0_0.TodoItem>())
       MigrateTo1_1_0.retainer.append(contentsOf: oldSaves)
-      for oldSave in oldSaves {
-        modelContext.delete(oldSave)
-      }
+      for oldSave in oldSaves { modelContext.delete(oldSave) }
       try modelContext.save()
     },
     didMigrate: { modelContext in

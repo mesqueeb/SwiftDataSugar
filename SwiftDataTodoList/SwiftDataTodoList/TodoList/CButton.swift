@@ -5,23 +5,20 @@ public struct CButton<Content: View>: View {
   let action: () -> Void
   let content: () -> Content?
 
-  init(action: @escaping () -> Void, @ViewBuilder content: @escaping () -> Content = { EmptyView() }) {
+  init(
+    action: @escaping () -> Void,
+    @ViewBuilder content: @escaping () -> Content = { EmptyView() }
+  ) {
     self.action = action
     self.content = content
   }
 
   public var body: some View {
-    Button(action: action) {
-      content()
-    }
-    #if os(visionOS)
-    .glassBackgroundEffect()
-    #endif
+    Button(action: action) { content() }  // swift-format-ignore
+      #if os(visionOS)
+        .glassBackgroundEffect()
+      #endif
   }
 }
 
-#Preview {
-  CButton(action: {}) {
-    Text("Tap me!")
-  }
-}
+#Preview { CButton(action: {}) { Text("Tap me!") } }
