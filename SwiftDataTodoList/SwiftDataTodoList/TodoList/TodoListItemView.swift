@@ -17,7 +17,9 @@ public struct TodoListItemView: View {
     Binding<String>(
       get: { item.summary },
       set: { newValue in
-        Task.detached { try await dbTodos.update(id: id) { data in data.summary = newValue } }
+        Task.detached {
+          try await dbTodos.updateAndSave(id: id) { data in data.summary = newValue }
+        }
       }
     )
   }
@@ -26,7 +28,7 @@ public struct TodoListItemView: View {
     withAnimation {
       let newValue = !item.isChecked
       Task.detached {
-        try await dbTodos.update(id: id) { data in
+        try await dbTodos.updateAndSave(id: id) { data in
           data.isChecked = newValue
           data.dateChecked = newValue ? Date() : nil
         }
@@ -43,7 +45,7 @@ public struct TodoListItemView: View {
 
   private func finishEditing() {
     Task.detached {
-      try await dbTodos.update(id: id) { data in
+      try await dbTodos.updateAndSave(id: id) { data in
         data.dateUpdated = Date()
         data.editHistory.addEntry(from: data)
       }

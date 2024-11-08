@@ -79,17 +79,21 @@ public struct MenuCrashTests: View {
       try! await Task.sleep(for: .milliseconds(50))
 
       // The following tasks all use the Actor to update, so the app should not crash.
-      Task.detached { try await dbTodos.update(uid: item.uid) { data in data.summary = "Edit A" } }
-      Task.detached { try await dbTodos.update(uid: item.uid) { data in data.summary = "Edit B" } }
+      Task.detached {
+        try await dbTodos.updateAndSave(uid: item.uid) { data in data.summary = "Edit A" }
+      }
+      Task.detached {
+        try await dbTodos.updateAndSave(uid: item.uid) { data in data.summary = "Edit B" }
+      }
 
       try! await Task.sleep(for: .milliseconds(50))
 
       let queryItemId = queryItems[0].id
       Task.detached {
-        try await dbTodos.update(id: queryItemId) { data in data.summary = "Edit C" }
+        try await dbTodos.updateAndSave(id: queryItemId) { data in data.summary = "Edit C" }
       }
       Task.detached {
-        try await dbTodos.update(id: queryItemId) { data in data.summary = "Edit D" }
+        try await dbTodos.updateAndSave(id: queryItemId) { data in data.summary = "Edit D" }
       }
 
       // One of the edits above should by now have been applied the `@Query` _should_ pick up this update automatically
@@ -105,10 +109,14 @@ public struct MenuCrashTests: View {
 
       let newDate = Date()
 
-      Task.detached { try await dbTodos.update(uid: item.uid) { data in data.isChecked = true } }
-      Task.detached { try await dbTodos.update(uid: item.uid) { data in data.summary = "RACED" } }
       Task.detached {
-        try await dbTodos.update(uid: item.uid) { data in data.dateChecked = newDate }
+        try await dbTodos.updateAndSave(uid: item.uid) { data in data.isChecked = true }
+      }
+      Task.detached {
+        try await dbTodos.updateAndSave(uid: item.uid) { data in data.summary = "RACED" }
+      }
+      Task.detached {
+        try await dbTodos.updateAndSave(uid: item.uid) { data in data.dateChecked = newDate }
       }
 
       try! await Task.sleep(for: .milliseconds(50))

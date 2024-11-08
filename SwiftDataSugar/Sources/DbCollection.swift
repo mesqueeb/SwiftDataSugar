@@ -79,12 +79,12 @@ where T: PersistentModel & CollectionDocument & SendableDocument, T.SendableType
   ///
   /// Always use this from `Task.detached` instead of just `Task` to ensure the passed `updateFn` closure is being
   /// executed in the actor's context. (otherwise `Task` might inherit the `@MainActor` and this shows a compile error)
-  public func update<Result: Sendable>(
+  public func updateAndSave<Result: Sendable>(
     id: PersistentIdentifier,
-    _ updateFn: @escaping (T) -> Result
+    _ updateFn: @escaping (inout T) -> Result
   ) throws -> Result? {
     guard var data = get(id: id) else { return nil }
-    let result = updateFn(data)
+    let result = updateFn(&data)
     data.dateUpdated = .now
     try modelContext.save()
     return result
@@ -94,14 +94,41 @@ where T: PersistentModel & CollectionDocument & SendableDocument, T.SendableType
   ///
   /// Always use this from `Task.detached` instead of just `Task` to ensure the passed `updateFn` closure is being
   /// executed in the actor's context. (otherwise `Task` might inherit the `@MainActor` and this shows a compile error)
-  public func update<Result: Sendable>(
+  public func updateAndSave<Result: Sendable>(
     uid: UUID,
-    _ updateFn: @escaping (T) -> Result
+    _ updateFn: @escaping (inout T) -> Result
   ) throws -> Result? {
     guard var data = try get(uid: uid) else { return nil }
-    let result = updateFn(data)
+    let result = updateFn(&data)
     data.dateUpdated = .now
     try modelContext.save()
+    return result
+  }
+
+  var saveTask: Task<Void, Never>? = nil
+
+  public func saveDebounced() {
+    if let saveTask { saveTask.cancel() }
+    self.saveTask = Task {
+      try? await Task.sleep(for: .seconds(1))
+      if Task.isCancelled { return }
+      do { try self.modelContext.save() } catch { print("❗️[DbCollection] Error saving", error) }
+      self.saveTask = nil
+    }
+  }
+
+  /// Returns `nil` if the record is not found, otherwise it returns the result of the `updateFn` closure being passed
+  ///
+  /// Always use this from `Task.detached` instead of just `Task` to ensure the passed `updateFn` closure is being
+  /// executed in the actor's context. (otherwise `Task` might inherit the `@MainActor` and this shows a compile error)
+  public func updateAndSaveLater<Result: Sendable>(
+    uid: UUID,
+    _ updateFn: @escaping (inout T) -> Result
+  ) throws -> Result? {
+    guard var data = try get(uid: uid) else { return nil }
+    let result = updateFn(&data)
+    data.dateUpdated = .now
+    saveDebounced()
     return result
   }
 }
