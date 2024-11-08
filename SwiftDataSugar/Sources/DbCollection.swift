@@ -16,6 +16,11 @@ where T: PersistentModel & CollectionDocument & SendableDocument, T.SendableType
   }
 
   // ---------------------
+  // State
+  // ---------------------
+  private var fetchedLast: T? = nil
+
+  // ---------------------
 
   public func insert(_ data: T.SendableType) throws {
     modelContext.insert(T(from: data))
@@ -26,16 +31,20 @@ where T: PersistentModel & CollectionDocument & SendableDocument, T.SendableType
   /// Returns `nil` if the record is not found
   private func get(id: PersistentIdentifier) -> T? {
     let data = self[id, as: T.self]
+    self.fetchedLast = data
     return data
   }
 
   /// Gets the document instance `T` for internal use
   /// Returns `nil` if the record is not found
   private func get(uid: UUID) throws -> T? {
+    if self.fetchedLast?.uid == uid { return self.fetchedLast }
     let dataArr = try self.modelContext.fetch(
       FetchDescriptor<T>(predicate: #Predicate { $0.uid == uid })
     )
-    return dataArr.first
+    let data = dataArr.first
+    self.fetchedLast = data
+    return data
   }
 
   /// Returns a Sendable version of the document instance `T`
@@ -53,6 +62,7 @@ where T: PersistentModel & CollectionDocument & SendableDocument, T.SendableType
   /// Deletes the document and saves
   public func delete(id: PersistentIdentifier) throws {
     guard let data = get(id: id) else { return }
+    self.fetchedLast = nil
     modelContext.delete(data)
     try modelContext.save()
   }
@@ -60,6 +70,7 @@ where T: PersistentModel & CollectionDocument & SendableDocument, T.SendableType
   /// Deletes the document and saves
   public func delete(uid: UUID) throws {
     guard let data = try get(uid: uid) else { return }
+    self.fetchedLast = nil
     modelContext.delete(data)
     try modelContext.save()
   }
