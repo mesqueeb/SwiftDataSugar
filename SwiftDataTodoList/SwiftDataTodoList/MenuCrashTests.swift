@@ -45,9 +45,8 @@ public struct MenuCrashTests: View {
       .map { i, _ in TodoItemSnapshot(summary: "Inserted to be deleted #\(i)") }
 
     Task {
-      try! await withThrowingTaskGroup(of: Void.self) { group in
+      await withThrowingTaskGroup(of: Void.self) { group in
         for item in items { group.addTask { try await dbTodos.insert(item) } }
-        for try await _task in group {}
       }
       try! await Task.sleep(for: .milliseconds(50))
 
