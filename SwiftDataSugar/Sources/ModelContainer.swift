@@ -14,7 +14,7 @@ public func initModelContainer(
   with migrationPlan: (any SchemaMigrationPlan.Type)?,
   inMemory: Bool = false,
   storeUrl: URL? = nil
-) -> ModelContainer {
+) throws -> ModelContainer {
   let schema = SwiftData.Schema(versionedSchema: schema)
   let config =
     if inMemory {
@@ -31,7 +31,7 @@ public func initModelContainer(
     )
   } catch {
     // it's always good to try twice. See: https://forums.developer.apple.com/forums/thread/758275?answerId=797470022#797470022
-    return try! SwiftData.ModelContainer(
+    return try SwiftData.ModelContainer(
       for: schema,
       migrationPlan: migrationPlan,
       configurations: [config]

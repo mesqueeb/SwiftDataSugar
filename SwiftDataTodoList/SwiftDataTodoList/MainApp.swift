@@ -4,7 +4,7 @@ import SwiftUI
 
 public typealias LatestSchema = Schema1_2_0
 
-@MainActor public let modelContainer = initModelContainer(
+@MainActor public let modelContainer = try! initModelContainer(
   for: LatestSchema.self,
   with: MigrationPlan.self,
   inMemory: false
