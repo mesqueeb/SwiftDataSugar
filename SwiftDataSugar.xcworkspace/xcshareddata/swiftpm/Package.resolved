@@ -1,5 +1,5 @@
 {
-  "originHash" : "0e73073bf81de3dd739fd143b8c507d342318923dca2a2d8e8aecc8d8efa38d8",
+  "originHash" : "68814cde06f8d1b225c81b75f39f9fbc5f90b568aea2569838a5e60131fb4394",
   "pins" : [
     {
       "identity" : "debouncify",
@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mesqueeb/MapSugar.git",
       "state" : {
-        "revision" : "b3004cb6b22f0256bffb05da19b876b3d6eb76a2",
-        "version" : "0.0.1"
+        "revision" : "dc2a0a40d88afddbf15639f9d4767f1b0cb66267",
+        "version" : "0.1.4"
       }
     }
   ],

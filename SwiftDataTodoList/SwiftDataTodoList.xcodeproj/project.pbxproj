@@ -505,7 +505,7 @@
 			repositoryURL = "https://github.com/mesqueeb/MapSugar.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
+				minimumVersion = 0.1.4;
 			};
 		};
 		F77DEC1D2C606DBD009CB94D /* XCRemoteSwiftPackageReference "Debouncify" */ = {
