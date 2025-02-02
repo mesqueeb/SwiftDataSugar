@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "bump": "np --no-cleanup --no-publish",
-    "test": "swift test --enable-swift-testing",
+    "test": "echo \"because of SwiftData reliance we can only use Xcode for testing\"",
     "postversion": "replace-regex --from=\"\\d+\\.\\d+\\.\\d+\" --to=\"$npm_package_version\" README.md && git add README.md && git commit -m \"chore: bump\""
   },
   "engines": {
