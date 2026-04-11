@@ -1,13 +1,13 @@
 import Foundation
 import SwiftData
 import SwiftDataSugar
-@testable import SwiftDataTodoList
 import Testing
+@testable import SwiftDataTodoList
 
 // TODO: Migrations via inMemory store...
 // I’m not sure if you can migrate in memory DB, as they’re deleted when closed and you need to close and reopen to migrate afaik.
 
-@Suite(.serialized) final class MigrationTests {
+@Suite(.serialized) @MainActor final class MigrationTests {
   var url: URL!
   var container: ModelContainer!
   var context: ModelContext!
