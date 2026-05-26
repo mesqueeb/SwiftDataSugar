@@ -10,13 +10,13 @@ let package = Package(
   targets: [
     .target(
       name: "SwiftDataSugar",
-      path: "SwiftDataSugar/Sources",
+      path: "Sources",
       swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
     ),
     .testTarget(
       name: "SwiftDataSugarTests",
       dependencies: ["SwiftDataSugar"],
-      path: "SwiftDataSugar/Tests"
+      path: "Tests"
     ),
   ],
   swiftLanguageModes: [.v6]

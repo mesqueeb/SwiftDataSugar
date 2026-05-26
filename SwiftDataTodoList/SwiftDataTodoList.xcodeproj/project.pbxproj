@@ -26,7 +26,7 @@
 /* Begin PBXFileReference section */
 		F77DEBC02C606C6B009CB94D /* SwiftDataTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftDataTodoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F77DEBD32C606C6D009CB94D /* MigrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MigrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F77DEC172C606D59009CB94D /* SwiftDataSugar */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftDataSugar; path = ../SwiftDataSugar; sourceTree = "<group>"; };
+		F77DEC172C606D59009CB94D /* SwiftDataSugar */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SwiftDataSugar; path = ..; sourceTree = "<group>"; };
 		F77DEC4D2C606EC9009CB94D /* MigrationTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MigrationTests.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,7 +164,7 @@
 			);
 			mainGroup = F77DEBB72C606C6B009CB94D;
 			packageReferences = (
-				F77DEC132C606D48009CB94D /* XCLocalSwiftPackageReference "../SwiftDataSugar" */,
+				F77DEC132C606D48009CB94D /* XCLocalSwiftPackageReference ".." */,
 				F77DEC1A2C606DB1009CB94D /* XCRemoteSwiftPackageReference "MapSugar" */,
 				F77DEC1D2C606DBD009CB94D /* XCRemoteSwiftPackageReference "Debouncify" */,
 			);
@@ -493,9 +493,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		F77DEC132C606D48009CB94D /* XCLocalSwiftPackageReference "../SwiftDataSugar" */ = {
+		F77DEC132C606D48009CB94D /* XCLocalSwiftPackageReference ".." */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = ../SwiftDataSugar;
+			relativePath = ..;
 		};
 /* End XCLocalSwiftPackageReference section */
 
