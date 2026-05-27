@@ -20,5 +20,6 @@
     "url": "https://github.com/mesqueeb/SwiftDataSugar.git"
   },
   "homepage": "https://github.com/mesqueeb/SwiftDataSugar#readme",
-  "bugs": "https://github.com/mesqueeb/SwiftDataSugar/issues"
+  "bugs": "https://github.com/mesqueeb/SwiftDataSugar/issues",
+  "packageManager": "pnpm@11.3.0"
 }
