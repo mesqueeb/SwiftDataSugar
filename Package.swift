@@ -12,12 +12,7 @@ let package = Package(
       name: "SwiftDataSugar",
       path: "Sources",
       swiftSettings: [.enableExperimentalFeature("StrictConcurrency")]
-    ),
-    .testTarget(
-      name: "SwiftDataSugarTests",
-      dependencies: ["SwiftDataSugar"],
-      path: "Tests"
-    ),
+    ), .testTarget(name: "SwiftDataSugarTests", dependencies: ["SwiftDataSugar"], path: "Tests"),
   ],
   swiftLanguageModes: [.v6]
 )
