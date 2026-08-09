@@ -15,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mesqueeb/MapSugar.git",
       "state" : {
-        "revision" : "dc2a0a40d88afddbf15639f9d4767f1b0cb66267",
-        "version" : "0.1.4"
+        "revision" : "be3a65031789f6c8283fa608d9760e3fc060e629",
+        "version" : "0.2.0"
       }
     }
   ],
