@@ -11,7 +11,7 @@
     "node": ">=20"
   },
   "devDependencies": {
-    "np": "^10.0.5",
+    "np": "^12.1.1",
     "replace-regex": "^0.0.3"
   },
   "funding": "https://github.com/sponsors/mesqueeb",
