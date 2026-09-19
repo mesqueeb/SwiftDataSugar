@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "bump": "np --no-cleanup --no-publish",
     "test": "echo \"because of SwiftData reliance we can only use Xcode for testing\"",
-    "postversion": "replace-regex --from=\"\\d+\\.\\d+\\.\\d+\" --to=\"$npm_package_version\" README.md && git add README.md && git commit -m \"chore: bump\""
+    "sync-readme": "replace-regex --from=\"\\d+\\.\\d+\\.\\d+\" --to=\"$npm_package_version\" README.md",
+    "release": "pnpm test && bumpp --no-push --all -x \"pnpm run sync-readme\" && git push --follow-tags && gh release create $(git describe --tags --abbrev=0) --generate-notes"
   },
   "engines": {
     "node": ">=20"
   },
   "devDependencies": {
-    "np": "^12.1.1",
+    "bumpp": "^12.3.0",
     "replace-regex": "^0.0.3"
   },
   "funding": "https://github.com/sponsors/mesqueeb",
