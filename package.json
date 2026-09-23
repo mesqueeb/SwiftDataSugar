@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"because of SwiftData reliance we can only use Xcode for testing\"",
     "sync-readme": "replace-regex --from=\"\\d+\\.\\d+\\.\\d+\" --to=\"$npm_package_version\" README.md",
-    "release": "pnpm test && bumpp --no-push --all -x \"pnpm run sync-readme\" && git push --follow-tags && gh release create $(git describe --tags --abbrev=0) --generate-notes --notes \"$(git log --pretty='- %s  %h' $(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || git rev-list --max-parents=0 HEAD)..HEAD~1)\""
+    "release": "pnpm test && bumpp --no-push --all -x \"pnpm run sync-readme\" && git push --follow-tags && gh release create $(git describe --tags --abbrev=0) --generate-notes --notes \"$(git log --pretty='- %s  %h' $(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || git rev-list --max-parents=0 HEAD)..HEAD~1)\" --notes \"$(git log --pretty='- %s  %h' $(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || git rev-list --max-parents=0 HEAD)..HEAD~1)\""
   },
   "engines": {
     "node": ">=20"
